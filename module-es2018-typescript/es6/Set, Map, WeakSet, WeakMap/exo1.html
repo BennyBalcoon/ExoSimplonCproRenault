@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Set, Map, WeakSet, WeakMap</title>
+</head>
+
+<body>
+    <script>
+        /*
+        NOUVEAU !
+        ES6 introduit de nouvelles structures de données itérables.
+
+        La fonction constructeur `Set` permet de créer des collections de
+        valeurs uniques de n'importe quel type, aussi bien de valeurs primitives
+        que de références.
+
+        Documentation : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Set
+
+        Exemple :
+
+          const valeursUniques = new Set(["Riri", "Fifi", "Loulou", "Riri"]);
+          valeursUniques.size; // 3
+
+      */
+
+        /*
+          1. Créez deux tableaux, le premier contiendra les 13 valeurs possibles
+          présentes dans un jeu de 52 cartes (as, 2-10, valet, reine, roi).
+          Le second contiendra les 4 couleurs possibles (pique, coeur, trèfle,
+          carreau).
+
+          2. En parcourant ces 2 tableaux, construisez un jeu de cartes.
+        */
+
+        let valeurs = ["as", 2, 3, 4, 5, 6, 7, 8, 9, 10, "valet", "dame", "roi"];
+        let couleurs = ["pique", "coeur", "trèfle", "carreau"];
+
+        let jeu = new Set();
+
+        for (let i = 0; i < valeurs.length; i++) {
+            for (let j = 0; j < couleurs.length; j++) {
+                jeu.add(`${valeurs[i]} de ${couleurs[j]}`);
+            }
+        }
+
+        console.log([...jeu]);
+
+        // function union(setA, setB) {
+        //     let union = new Set(setA);
+        //     for (var elem of setB) {
+        //         union.add(elem);
+        //     }
+        //     return union;
+        // }
+
+        // let setValeurs = new Set([...valeurs]);
+        // let setCouleurs = new Set([...couleurs]);
+
+        // let result = union(setValeurs, setCouleurs);
+        // console.log([...result]);
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>
