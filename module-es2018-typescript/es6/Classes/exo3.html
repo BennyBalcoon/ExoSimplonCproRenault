@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Classes</title>
+</head>
+
+<body>
+  <script>
+    /*
+        RAPPEL :
+        En JavaScript il est possible de définir sur un objet ce que l'on
+        appelle des accesseurs et mutateurs de propriétés (via les méthodes
+        `Object.defineProperty()`, `Object.defineProperties()` et
+        `Object.create()`).
+        L'accès en lecture ou en écriture à ces propriétés provoque un appel
+        respectivement à la fonction `get` et à la fonction `set` définies dans
+        le descripteur de propriété associé.
+
+        Exemple :
+          const obj = {};
+          Object.defineProperty(obj, "réponseÀLaQuestionSecrèteDeLUnivers", {
+            get: function() {
+              console.log("Chut... ne le dites à personne !");
+              return 42;
+            },
+            set: function(nouvelleValeur) {
+              console.log("Personne ne change la réponse à la question secrète de l'Univers. Non mais z'êtes pas bien !")
+              return;
+            },
+            enumerable: true,
+            configurable: true
+          })
+
+        NOUVEAU !
+        Les classes ES6 offrent également une syntaxe simplifiée pour définir
+        des accesseurs et mutateurs de propriétés sur les instances de la
+        classe (avec `get` et `set`).
+
+        Exemple en ES6 :
+          ------------------------------------------------------------
+          class Point {
+            // Constructeur de la classe
+            constructor(x, y) {
+              this.x = x;
+              this.y = y;
+            }
+
+            // Accesseur de propriété
+            get norme() {
+              return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+            }
+
+            // Mutateur de propriété
+            set norme(nouvelleNorme) {
+              if (this.norme === 0) {
+                return;
+              }
+              this.x = this.x / this.norme * nouvelleNorme;
+              this.y = this.y / this.norme * nouvelleNorme;
+            }
+          }
+
+          const B = new Point(3, 4);
+          B.norme; // 5
+          ------------------------------------------------------------
+
+        Code équivalent en ES5 :
+          ------------------------------------------------------------
+          "use strict";
+          var Point = (function () {
+            // Constructeur de la classe
+            function Point(x, y) {
+              this.x = x;
+              this.y = y;
+            }
+
+            // Accesseur de propriété
+            Object.defineProperty(Point.prototype, "norme", {
+              get: function() {
+                return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+              },
+              set: function(nouvelleNorme) {
+                if (this.norme === 0) {
+                  return;
+                }
+                this.x = this.x / this.norme * nouvelleNorme;
+                this.y = this.y / this.norme * nouvelleNorme;
+              },
+              enumerable: true,
+              configurable: true
+            }):
+
+            return Point;
+          }());
+
+          var B = new Point(3, 4);
+          B.norme; // 5
+          ------------------------------------------------------------
+      */
+
+    /*
+      Reprenez le code de l'exercice précédent.
+
+      1. Nous allons ajouter à la classe Rectangle des propriétés numériques
+      sous forme d'accesseur de propriété pour récupérer les coordonnées des
+      segments du rectangle et nous éviter des calculs répétitifs. Appelez ces
+      propriétés `haut`, `bas`, `gauche`, `droite`. Le bord gauche se calcule
+      en partant du bord droit et en ajoutant la largeur du rectangle, et
+      ainsi de suite.
+
+      2. Créez deux rectangles r1 et r2 comme précédemment et affichez dans la
+      console les coordonnées de leurs 4 bords.
+    */
+
+    class Rectangle {
+      constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+      }
+
+      deplacerA(deplacerX, deplacerY) {
+        this.x = deplacerX;
+        this.y = deplacerY;
+      }
+
+      redimensionner(newWidth, newHeight) {
+        this.width = newWidth;
+        this.height = newHeight;
+      }
+
+      get gauche() {
+        return `(${this.x}, ${this.y}), (${this.x}, ${this.y+this.height})`;
+      }
+
+      get droite() {
+        return `(${this.x+this.width}, ${this.y}), (${this.x+this.width}, ${this.y+this.height})`;
+      }
+
+      get haut() {
+        return `(${this.x}, ${this.y}), (${this.x+this.width}, ${this.y})`;
+      }
+
+      get bas() {
+        return `(${this.x}, ${this.y+this.height}), (${this.x+this.width}, ${this.y+this.height}))`;
+      }
+    }
+
+    let r1 = new Rectangle(1, 1, 6, 3);
+    console.log(r1.gauche);
+    console.log(r1.droite);
+    console.log(r1.haut);
+    console.log(r1.bas);
+
+    let r2 = new Rectangle(-3, 0, 6, 6);
+    console.log(r2.gauche);
+    console.log(r2.droite);
+    console.log(r2.haut);
+    console.log(r2.bas);
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+
+</html>

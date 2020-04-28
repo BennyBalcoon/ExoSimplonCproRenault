@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Classes</title>
+</head>
+
+<body>
+  <script>
+    /*
+        NOUVEAUTÉ !
+        ES6 introduit un sucre syntaxique pour l'écriture de fonctions
+        constructeur avec l'introduction de la syntaxe `class`.
+
+        Cette syntaxe reprend de façon artificielle l'écriture de classes telle
+        qu'elle est présente dans d'autres langages dits "orientés objets" tels
+        Java ou C#. Dans ces langages, la notion de classe est présente mais
+        diffère radicalement des "classes" en JavaScript.
+
+        En effet, les classes en JavaScript sont à voir comme une facilité
+        d'écriture. Elles ne doivent pas faire oublier le fait que la création
+        d'objets avec le mot-clé `class` équivaut toujours à une création
+        d'objet par l'intermédiaire d'une FONCTION CONSTRUCTEUR, comme nous
+        allons le voir.
+
+        Exemple de classe ES6 :
+          ------------------------------------------------------------
+          class Point {
+            // Constructeur de la classe
+            constructor(x, y) {
+              this.x = x;
+              this.y = y;
+            }
+          }
+
+          const A = new Point(1, 2);
+          A.x; // 1
+          A.y; // 2
+          ------------------------------------------------------------
+        Code équivalent en ES5 :
+          ------------------------------------------------------------
+          "use strict";
+          var Point = (function () {
+              // Fonction constructeur équivalente
+              function Point(x, y) {
+                  this.x = x;
+                  this.y = y;
+              }
+
+              return Point
+          }());
+
+          var A = new Point(1, 2);
+          A.x; // 1
+          A.y; // 2
+          ------------------------------------------------------------
+      */
+
+    /*
+      1. Créez une classe Rectangle.
+      Cette classe permet de créer des objets qui possèdent des coordonnées
+      `x` et `y` correspondant au coin supérieur gauche du rectangle, ainsi
+      qu'une largeur et une longueur.
+
+      2. Instanciez deux rectangles r1 et r2 à partir de votre classe. Ces
+      rectangles auront pour coordonnées :
+      r1 : (1, 4), (7, 4), (7, 1), (1, 1)
+      r2 : (-3, 6), (3, 6), (3, 0), (-3, 0)
+
+      Affichez les deux rectangles dans la console.
+
+      3. Affichez dans la console la valeur de Rectangle.prototype. Que
+      constatez-vous ? Comparez cette valeur avec les valeurs de r1.__proto__
+      et r2.__proto__.
+
+      4. Réécrivez la classe en code ES5 (appelez-la `RectangleES5`) et créez
+      deux rectangles r3 et r4 identiques aux rectangles r1 et r2. Affichez
+      r3 et r4 dans la console et vérifiez que vous obtenez les mêmes valeurs
+      que pour r1 et r2.
+    */
+
+    class Rectangle {
+      constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+      }
+    }
+
+    let r1 = new Rectangle(1, 1, 6, 3);
+    let r2 = new Rectangle(-3, 0, 6, 6);
+
+    console.log(r1);
+    console.log(r2);
+    console.log(Rectangle.prototype);
+
+    var RectangleES5 = (function () {
+      function RectangleES5(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+      }
+
+      return RectangleES5
+    }());
+
+    var r3 = new RectangleES5(1, 1, 6, 3);
+    var r4 = new RectangleES5(-3, 0, 6, 6);
+
+    console.log(r3);
+    console.log(r4);
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+
+</html>

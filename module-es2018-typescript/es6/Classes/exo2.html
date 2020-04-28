@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Classes</title>
+</head>
+
+<body>
+  <script>
+    /*
+        Les classes ES6 permettent de définir des méthodes d'instance,
+        l'équivalent des fonctions rattachées à la propriété `.prototype` des
+        fonctions constructeur en ES5. Ces méthodes se retrouveront ensuite
+        disponibles sur le prototype (propriété `__proto__`) de chacune des
+        instances de la classe.
+
+        RAPPEL :
+        La propriété `.prototype` d'une fonction constructeur et le prototype de
+        chacune de ses instances contiennent des références pointant vers un
+        seul et unique objet en mémoire. Modifier la propriété `.prototype`
+        d'une fonction constructeur revient donc à modifier le prototype de
+        chacune des instances de la fonction.
+
+        Exemple de méthode d'instances en ES6 :
+          ------------------------------------------------------------
+          class Point {
+            // Constructeur de la classe
+            constructor(x, y) {
+              this.x = x;
+              this.y = y;
+            }
+
+            // Méthode d'instance
+            translation(déplacementX, déplacementY) {
+              this.x += déplacementX;
+              this.y += déplacementY;
+            }
+          }
+
+          const A = new Point(1, 2);
+          A.translation(10, 20);
+          A.x; // 11
+          A.y; // 22
+          ------------------------------------------------------------
+        Code équivalent en ES5 :
+          ------------------------------------------------------------
+          "use strict";
+          var Point = (function () {
+            // Constructeur de la classe
+            function Point(x, y) {
+              this.x = x;
+              this.y = y;
+            }
+
+            // Méthode d'instance
+            Point.prototype.translation = function (déplacementX, déplacementY) {
+              this.x += déplacementX;
+              this.y += déplacementY;
+            };
+
+            return Point;
+          }());
+
+          var A = new Point(1, 2);
+          A.translation(10, 20);
+          A.x; // 11
+          A.y; // 22
+          ------------------------------------------------------------
+      */
+
+    /*
+      Reprenez la classe Rectangle de l'exercice précédent.
+
+      1. On aimerait pouvoir déplacer et redimensionner les rectangles.
+      Ajoutez à la classe une méthode `déplacerÀ` qui acceptera des
+      coordonnées x et y. Ces coordonnées deviendront le nouveau coin
+      supérieur gauche du rectangle.
+      Ajoutez également une méthode `redimensionner` qui prendra en argument
+      les nouvelles dimensions du rectangle (longueur et largeur).
+
+      2. Créez 2 rectangles r1 et r2 comme à l'exercice précédent. Déplacer r1
+      à (2, 4) et redimensionnez-le pour qu'il fasse 10 de large sur 5 de
+      haut.
+      Déplacez également r2 à (-1, 3) et donnez lui pour dimensions 20 en
+      largeur et 4 en hauteur.
+
+      Affichez les deux rectangles dans la console.
+
+      3. Réécrivez la classe Rectangle en code ES5 (appelez-la `RectangleES5`)
+      et créez deux rectangles r3 et r4 identiques aux rectangles r1 et r2.
+      Modifier les rectangles r3 et r4 de façon similaire aux rectangles r1 et
+      r2.
+
+      Affichez r3 et r4 dans la console et vérifiez que vous obtenez les mêmes
+      valeurs que pour r1 et r2.
+
+      4. Affichez dans la console la valeur de Rectangle.prototype. Que
+      constatez-vous ? Comparez cette valeur avec les valeurs de r1.__proto__
+      et r2.__proto__.
+
+      5. Faites-en de même avec `RectangleES5.prototype` et les valeurs de
+      r3.__proto__ et r4.__proto__.
+    */
+
+    // ES6
+    class Rectangle {
+      constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+      }
+
+      deplacerA(deplacerX, deplacerY) {
+        this.x = deplacerX;
+        this.y = deplacerY;
+      }
+
+      redimensionner(newWidth, newHeight) {
+        this.width = newWidth;
+        this.height = newHeight;
+      }
+    }
+
+    let r1 = new Rectangle(1, 1, 6, 3);
+    let r2 = new Rectangle(-3, 0, 6, 6);
+
+    r1.deplacerA(2, 4);
+    r1.redimensionner(10, 5);
+    console.log(r1);
+
+    r2.deplacerA(-1, 3);
+    r2.redimensionner(20, 4);
+    console.log(r2);
+
+    // ES5
+
+    var RectangleES5 = (function () {
+      function RectangleES5(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+      }
+
+      RectangleES5.prototype.deplacerA = function (deplacerX, deplacerY) {
+        this.x = deplacerX;
+        this.y = deplacerY;
+      };
+
+      RectangleES5.prototype.redimensionner = function (newWidth, newHeight) {
+        this.width = newWidth;
+        this.height = newHeight;
+      }
+
+      return RectangleES5
+    }());
+
+    var r3 = new RectangleES5(1, 1, 6, 3);
+    var r4 = new RectangleES5(-3, 0, 6, 6);
+
+    r3.deplacerA(2, 4);
+    r3.redimensionner(10, 5);
+
+    r4.deplacerA(-1, 3);
+    r4.redimensionner(20, 4);
+
+    console.log(r3);
+    console.log(r4);
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+
+</html>

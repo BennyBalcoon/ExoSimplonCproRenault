@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Classes</title>
+</head>
+
+<body>
+    <script>
+        /*
+        Les classes ES6 offrent également la possibilité de définir des méthodes
+        et propriétés dites statiques avec le mot-clé `static`. Les méthodes et
+        propriétés statiques ont la particularité d'être indépendantes de toute
+        instance et d'être directement accessibles depuis la classe.
+
+        En ES5 elles équivalent à des méthodes définies directement sur la
+        fonction constructeur (et non sur sa propriété `.prototype`).
+
+        Exemple de classe :
+          class Point {
+            // Constructeur de la classe
+            constructor(x, y) {
+              this.x = x;
+              this.y = y;
+            }
+
+            // Méthode statique
+            static additionner(point1, point2) {
+              return new Point(point1.x + point2.x, point1.y + point2.y);
+            }
+          }
+
+          const A = new Point(1, 2);
+          const B = new Point(3, 4);
+          const C = Point.additionner(A, B); // appel d'une méthode statique de la classe Point
+          C.x; // 4
+          C.y; // 6
+
+        Code équivalent en ES5 :
+          "use strict";
+          var Point = (function () {
+            // Constructeur de la classe
+            function Point(x, y) {
+              this.x = x;
+              this.y = y;
+            }
+
+            // Méthode statique
+            Point.additionner = function (point1, point2) {
+              return new Point(point1.x + point2.x, point1.y + point2.y);
+            };
+
+            return Point;
+          }());
+
+          var A = new Point(1, 2);
+          var B = new Point(3, 4);
+          var C = Point.additionner(A, B);
+          C.x; // 4
+          C.y; // 6
+      */
+
+        /*
+          Reprenez le code de l'exercice précédent.
+
+          1. Ajouter une méthode statique `intersection` à la classe Rectangle.
+          Cette méthode prendra en argument 2 rectangles et renverra au choix :
+          - un nouveau rectangle correspondant à l'intersection des deux rectangles
+            fournis
+          - `null` si les deux rectangles ne se chevauchent pas.
+
+          Pour déterminer si deux rectangles se coupent il suffit de tester si :
+            r1.droite > r2.gauche &&
+            r1.gauche < r2.droite &&
+            r1.bas > r2.haut &&
+            r1.haut < r2.bas
+
+          Pour déterminer les coordonnées du rectangle à l'intersection de r1 et
+          r2 on pourra s'aider des formules :
+            x = Math.max(r1.gauche, r2.gauche);
+            y = Math.max(r1.haut, r2.haut);
+            width = Math.min(r1.droite, r2.droite) - x;
+            height = Math.min(r1.bas, r2.bas) - y;
+
+          2. Créer 2 rectangles r1 et r2 avec les coordonnées de votre choix.
+          Assurez-vous que r1 et r2 se chevauchent.
+
+          3. Créez un troisièmme rectangle r3 qui sera le résultat de
+          l'intersection des rectangles r1 et r2.
+
+          4. Déplacer r1 et r2 de manière à ce qu'ils ne se chevauchent plus.
+          Créez un rectangle r4 qui sera l'intersection des rectangles r1 et r2.
+          Verifiez dans la console que r4 vaut bien `null`.
+        */
+        class Rectangle {
+            constructor(x, y, w, h) {
+                this.x = x;
+                this.y = y;
+                this.width = w;
+                this.height = h;
+            }
+
+
+            deplacerA(deplacerX, deplacerY) {
+                this.x = deplacerX;
+                this.y = deplacerY;
+            }
+
+            redimensionner(newWidth, newHeight) {
+                this.width = newWidth;
+                this.height = newHeight;
+            }
+
+            get gauche() {
+                return {
+                    xHaut: this.x,
+                    yHaut: this.y,
+                    xBas: this.x,
+                    yBas: this.y + this.height
+                }
+                // return `(${this.x}, ${this.y}), (${this.x}, ${this.y+this.height})`;
+            }
+
+            get droite() {
+                return {
+                    xHaut: this.x + this.width,
+                    yHaut: this.y,
+                    xBas: this.x + this.width,
+                    yBas: this.y + this.height
+                }
+                // return `(${this.x+this.width}, ${this.y}), (${this.x+this.width}, ${this.y+this.height})`;
+            }
+
+            get haut() {
+                return {
+                    xGauche: this.x,
+                    yGauche: this.y,
+                    xDroite: this.x + this.width,
+                    yDroite: this.y
+                }
+                // return `(${this.x}, ${this.y}), (${this.x+this.width}, ${this.y})`;
+            }
+
+            get bas() {
+                return {
+                    xGauche: this.x,
+                    yGauche: this.y + this.height,
+                    xDroite: this.x + this.width,
+                    yDroite: this.y + this.height
+                }
+                // return `(${this.x}, ${this.y+this.height}), (${this.x+this.width}, ${this.y+this.height}))`;
+            }
+
+            static intersection(Rectangle1, Rectangle2) {
+                let x;
+                let y;
+                let w;
+                let h;
+
+                let rectanglesSeCoupent = Rectangle1.droite.xHaut > Rectangle2.gauche.xHaut &&
+                    Rectangle1.gauche.xHaut < Rectangle2.droite.xHaut &&
+                    Rectangle1.bas.yGauche > Rectangle2.haut.yGauche &&
+                    Rectangle1.haut.yGauche < Rectangle2.bas.yGauche;
+                if (rectanglesSeCoupent) {
+                    x = Math.max(Rectangle1.gauche.xHaut, Rectangle2.gauche.xHaut);
+                    y = Math.max(Rectangle1.haut.yGauche, Rectangle2.haut.yGauche);
+                    w = Math.min(Rectangle1.droite.xHaut, Rectangle2.droite.xHaut) - x;
+                    h = Math.min(Rectangle1.bas.yGauche, Rectangle2.bas.yGauche) - y;
+                    return new Rectangle(x, y, w, h)
+                } else {
+                    return null
+                }
+            }
+        }
+
+        let r1 = new Rectangle(1, 1, 6, 3);
+        let r2 = new Rectangle(2, -1, 3, 4);
+
+        let r3 = Rectangle.intersection(r1, r2);
+
+        r2.deplacerA(11, 16);
+
+        let r4 = Rectangle.intersection(r1, r2);
+        console.log(r4);
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>

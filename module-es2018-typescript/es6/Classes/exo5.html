@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Classes</title>
+</head>
+
+<body>
+  <script>
+    /*
+        NOUVEAUTÉ !
+        Un des avantages de l'introduction de la syntaxe `class` en ES6 tient
+        dans la facilité à créer des classes dérivées. On utilise pour cela le
+        mot-clé `extends`.
+
+        Exemple :
+          ------------------------------------------------------------
+          // Classe de base
+          class Ville {
+            constructor(nom,departement,lieu,climat) {
+              this.nom = nom;
+              this.departement = departement;
+              this.lieu = lieu;
+              this.climat = climat;
+            }
+​
+            situation() {
+              console.log(`La ville de ${this.nom} est située dans le département ${this.departement}.`);
+            }
+​
+            geographie() {
+              console.log(`Nous sommes en ${this.lieu} et le climat est de type ${this.climat}.`);
+            }
+          }
+​
+          // Classe dérivée de la classe de base
+          class VilleMontagne extends Ville {
+            constructor (nom,departement) {
+              super (nom, departement,'Montagne','Montagnard')
+            }
+          }
+  ​
+          // Autre classe dérivée
+          class VillePlaine extends Ville {
+            constructor (nom,departement) {
+              super (nom, departement,'Plaine','tempéré')
+            }
+          }
+  ​
+          var chamonix = new VilleMontagne('Chamonix','Hautes-Savoie');
+          console.log(chamonix);
+          chamonix.situation();
+          chamonix.geographie();
+  ​
+          var dijon = new VilleMontagne('Dijon','Côtes d\'Or');
+          console.log(dijon);
+          dijon.situation();
+          ------------------------------------------------------------
+      */
+
+    /*
+      1. Reprenez la classe Rectangle précédente et créez une nouvelle classe
+      que vous appellerez RectangleColoré et qui dérivera de la classe
+      Rectangle. Les instances de la classe RectangleColoré auront une
+      propriété 'couleur' qui n'était pas présente sur la classe d'origine.
+
+      2. Créez désormais une classe Carré qui héritera également de la classe
+      Rectangle. Un carré est un rectangle dont la largeur et la hauteur sont
+      égaux. Faites transparaître cette propriété dans la liste des arguments
+      attendus par le constructeur de la classe Carré.
+
+      3. Ajoutez également une méthode statique `dériverDe` à la classe
+      RectangleColoré, qui prendra en argument un rectangle classique ainsi
+      qu'une chaîne de caractère représentant une couleur. Cette méthode
+      renverra un nouveau rectangle coloré en recopiant les caractéristiques
+      d'un rectangle simple.
+    */
+    class Rectangle {
+      constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+      }
+
+
+      deplacerA(deplacerX, deplacerY) {
+        this.x = deplacerX;
+        this.y = deplacerY;
+      }
+
+      redimensionner(newWidth, newHeight) {
+        this.width = newWidth;
+        this.height = newHeight;
+      }
+
+      get gauche() {
+        return {
+          xHaut: this.x,
+          yHaut: this.y,
+          xBas: this.x,
+          yBas: this.y + this.height
+        }
+        // return `(${this.x}, ${this.y}), (${this.x}, ${this.y+this.height})`;
+      }
+
+      get droite() {
+        return {
+          xHaut: this.x + this.width,
+          yHaut: this.y,
+          xBas: this.x + this.width,
+          yBas: this.y + this.height
+        }
+        // return `(${this.x+this.width}, ${this.y}), (${this.x+this.width}, ${this.y+this.height})`;
+      }
+
+      get haut() {
+        return {
+          xGauche: this.x,
+          yGauche: this.y,
+          xDroite: this.x + this.width,
+          yDroite: this.y
+        }
+        // return `(${this.x}, ${this.y}), (${this.x+this.width}, ${this.y})`;
+      }
+
+      get bas() {
+        return {
+          xGauche: this.x,
+          yGauche: this.y + this.height,
+          xDroite: this.x + this.width,
+          yDroite: this.y + this.height
+        }
+        // return `(${this.x}, ${this.y+this.height}), (${this.x+this.width}, ${this.y+this.height}))`;
+      }
+
+      static intersection(Rectangle1, Rectangle2) {
+        let x;
+        let y;
+        let w;
+        let h;
+
+        let rectanglesSeCoupent = Rectangle1.droite.xHaut > Rectangle2.gauche.xHaut &&
+          Rectangle1.gauche.xHaut < Rectangle2.droite.xHaut &&
+          Rectangle1.bas.yGauche > Rectangle2.haut.yGauche &&
+          Rectangle1.haut.yGauche < Rectangle2.bas.yGauche;
+        if (rectanglesSeCoupent) {
+          x = Math.max(Rectangle1.gauche.xHaut, Rectangle2.gauche.xHaut);
+          y = Math.max(Rectangle1.haut.yGauche, Rectangle2.haut.yGauche);
+          w = Math.min(Rectangle1.droite.xHaut, Rectangle2.droite.xHaut) - x;
+          h = Math.min(Rectangle1.bas.yGauche, Rectangle2.bas.yGauche) - y;
+          return new Rectangle(x, y, w, h)
+        } else {
+          return null
+        }
+      }
+    }
+
+    class RectangleColoré extends Rectangle {
+      constructor(couleur) {
+        super(x, y, w, h);
+      }
+
+      static dériverDe(Rectangle, couleur) {
+        return new RectangleColoré(couleur)
+      }
+    }
+
+    class Carré extends Rectangle {
+      constructor(longueur) {
+        super(x, y, longueur, longueur);
+      }
+    }
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+
+</html>
