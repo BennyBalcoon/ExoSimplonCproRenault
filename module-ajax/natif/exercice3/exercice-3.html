@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 3</title>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+
+            const countrySelection = window.document.createElement("select");
+            let regionSelection = window.document.createElement("select");
+            let citySelection = window.document.createElement("select");
+
+            const defaultOption = document.createElement('option');
+            defaultOption.text = "Select";
+
+            const xhrForCountriesList = new XMLHttpRequest();
+            const urlCountries = "http://localhost:8080/country";
+            xhrForCountriesList.open("GET", urlCountries);
+            xhrForCountriesList.send();
+            console.log(xhrForCountriesList);
+            xhrForCountriesList.addEventListener("load", function () {
+                let countryObject = JSON.parse(xhrForCountriesList.responseText);
+                countrySelection.add(defaultOption);
+                for (let i = 0; i < countryObject.length; i++) {
+                    countrySelection.innerHTML = countrySelection.innerHTML +
+                        '<option value="' + countryObject[i]['id'] + '">' + countryObject[i]['name'] +
+                        '</option><br />';
+                }
+                document.body.appendChild(countrySelection);
+            })
+
+            countrySelection.addEventListener("change", function () {
+                if (window.document.getElementById("region-select")) {
+                    const regionToRemove = window.document.getElementById("region-select");
+                    console.log(regionToRemove);
+                    regionToRemove.parentNode.removeChild(regionToRemove);
+                }
+                if (window.document.getElementById("city-select")) {
+                    const cityToRemove = window.document.getElementById("city-select");
+                    console.log(cityToRemove);
+                    cityToRemove.parentNode.removeChild(cityToRemove);
+                }
+
+                regionSelection = window.document.createElement("select");
+                regionSelection.id = "region-select";
+
+                const xhrForRegionsList = new XMLHttpRequest();
+                let countryId = countrySelection.options[countrySelection.selectedIndex]
+                    .value;
+                console.log(countryId);
+                const urlRegions = `http://localhost:8080/country/${countryId}/region`;
+                xhrForRegionsList.open("GET", urlRegions);
+                xhrForRegionsList.send();
+                console.log(xhrForRegionsList);
+                xhrForRegionsList.addEventListener("load", function () {
+                    let regionObject = JSON.parse(xhrForRegionsList.responseText);
+                    regionSelection.add(defaultOption);
+                    console.log(regionObject);
+                    for (let i = 0; i < regionObject.length; i++) {
+                        regionSelection.innerHTML = regionSelection.innerHTML +
+                            '<option value="' + regionObject[i]['id'] + '">' +
+                            regionObject[i]['name'] +
+                            '</option>';
+                    }
+                    document.body.appendChild(regionSelection);
+                    console.log(regionSelection);
+                })
+
+                regionSelection.addEventListener("change", function () {
+
+                    if (window.document.getElementById("city-select")) {
+                        const cityToRemove = window.document.getElementById("city-select");
+                        console.log(cityToRemove);
+                        cityToRemove.parentNode.removeChild(cityToRemove);
+                    }
+
+                    citySelection = window.document.createElement("select");
+                    citySelection.id = "city-select";
+
+                    const xhrForCitiesList = new XMLHttpRequest();
+                    let regionId = regionSelection.options[regionSelection.selectedIndex]
+                        .value;
+                    console.log(regionId);
+                    const urlCities = `http://localhost:8080/country/region/${regionId}/city`;
+                    xhrForCitiesList.open("GET", urlCities);
+                    xhrForCitiesList.send();
+                    console.log(xhrForCitiesList);
+                    xhrForCitiesList.addEventListener("load", function () {
+                        let cityObject = JSON.parse(xhrForCitiesList.responseText);
+                        console.log(cityObject);
+                        citySelection.add(defaultOption);
+                        for (let i = 0; i < cityObject.length; i++) {
+                            citySelection.innerHTML = citySelection.innerHTML +
+                                '<option value="' + cityObject[i]['id'] + '">' +
+                                cityObject[i]['name'] +
+                                '</option>';
+                        }
+                        document.body.appendChild(citySelection);
+                        console.log(citySelection);
+                    })
+                })
+
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <p>Choisissez un pays :</p>
+
+
+</body>
+
+</html>
