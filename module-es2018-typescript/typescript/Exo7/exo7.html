@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 7</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+
+      --------------------
+        Principe de base
+      --------------------
+
+      Comme en JavaScript, en TypeScript les objets sont constitués de paires
+      clef-valeur. On doit, en revanche, définir précisemment ce que contient
+      l'objet (noms de propriétés et types de données associés) :
+
+      ===code_ts===============================================
+        let fiche: { essence: string, taille: number } = {
+          essence: 'chêne feuillu',
+          taille: 12
+        };
+      =========================================================
+
+      -------------------------
+        Tableau dans un objet
+      -------------------------
+      On peut également prévoir de placer des tableaux dans un objet ce qui nous
+      donne :
+
+      ===code_ts============================================================
+        let fiche: { essence: string, taille: number, caracteristiques: string[] } = {
+          essence: 'chêne feuillu',
+          taille: 12,
+          caracteristiques: ['vert','europe','sempervirent']
+        };
+      ======================================================================
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+
+      - Créez un objet contenant cinq propriétés :
+        - deux chaînes de caractères
+        - un nombre
+        - deux tableaux (l'un, rempli, contenant des textes ; l'autre, vide, qui
+        contiendra des nombres)
+      - Ecrire une boucle qui affiche les valeurs du premier tableau dans la
+      console
+      - Ajoutez des données dans le tableau vide à l'aide de la méthode .push()
+      - Faites la somme de tous les nombres de l'objet et affichez le résultat
+      dans la console (utilisez une boucle pour additionner successivement
+      chaque nombre contenu dans le tableau).
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice 7</h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+<script src="exo7.js"></script>
+</html>

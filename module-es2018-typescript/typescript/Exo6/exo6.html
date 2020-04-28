@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 6</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+
+      --------------------
+        Principe général
+      --------------------
+      Parmi les ajouts de type de données dans TypeScript, on trouve l'enum. Il
+      offre la possibilité de créer une énumération de nombres en donnant à
+      chacun un nom spécifique comme suit :
+
+      ===code_ts===============================================
+        enum mouvement {haut,bas,gauche,droite};
+      =========================================================
+
+      Par défaut, on débute à 0 ce qui veut dire ici que haut vaut 0, bas 1 … :
+
+      ===code_ts===============================================
+        console.log(mouvement.bas); // affiche 1
+      =========================================================
+
+      On peut aussi écrire :
+
+      ===code_ts===============================================
+        console.log(mouvement['droite']); // affiche 3
+      =========================================================
+
+      À l'inverse, il est possible d'afficher le nom d'une entrée comme suit :
+
+      ===code_ts===============================================
+        console.log(mouvement[2]); // affiche gauche
+      =========================================================
+
+      ----------------------------------------
+        Une ou plusieurs valeurs spécifiques
+      ----------------------------------------
+
+      On peut donner une valeur spécifique à la première entrée :
+
+      ===code_ts===============================================
+        enum mouvement {haut = 8,bas,gauche,droite};
+        console.log(mouvement.gauche); // affiche 10
+      =========================================================
+
+      On peut donner une valeur à plusieurs ou toutes les entrées :
+
+      ===code_ts===============================================
+        enum mouvement {haut = 48,bas,gauche = 82,droite};
+        console.log(mouvement.haut); // affiche 48
+        console.log(mouvement['bas']); // affiche 49
+        console.log(mouvement.droite); // affiche 83
+      =========================================================
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+      - Créez un enum contenant comme nom spécifique pour chaque entrée un
+      prénom.
+      - Prévoyez 6 prénoms ;
+      - La première valeur est égale à 1 ;
+      - Affichez dans la console la valeur du troisième prénom ;
+      - Stockez dans une variable le sixième prénom (en manipulant l'enum) et
+      affichez dans la console « Je m'appelle XXX». (XXX représente ce prénom).
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice </h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+<script src="exo6.js"></script>
+</html>

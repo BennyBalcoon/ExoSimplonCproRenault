@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 4</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+
+      --------------------
+        Principe général
+      --------------------
+      Avec TypeScript, les types de tableau sont déclarés en faisant suivre le
+      nom du type de donnée (string,number,boolean) associé à []. Cela nous
+      donne :
+
+      ===code_ts===============================================
+        const loisirs: string[] = ['Vélo', 'Cinéma'];
+      =========================================================
+
+      ----------------
+        Tableau vide
+      ----------------
+      On peut créer un tableau vide et stocker sa référence dans une variable de
+      la façon suivante :
+
+      ===code_ts===============================================
+        let elements: number[] = [];
+      =========================================================
+
+      ----------------------------
+        Sans déclaration de type
+      ----------------------------
+
+      On peut NE PAS préciser le type. Ce qui nous donnerait ceci :
+
+      ===code_ts===============================================
+        let liste = [1, 3.22, 6, -1]
+      =========================================================
+
+      Cependant, il faut noter que la déclaration de type est préférable pour
+      conserver un des avantages offert par TypeScript.
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+
+    -------
+    -- 1 --
+    -------
+
+      Créez un tableau contenant différents mots puis affichez dans la console
+      un de ces mots. Veillez à ne stocker dans le tableau qu'un type de données
+      et à utiliser une variable qui ne peut être modifiée.
+
+    -------
+    -- 2 --
+    -------
+
+      - Créez un tableau vide dans lequel on pourra enregistrer des nombres.
+      - Ajoutez avec la méthode push trois nombres.
+      - Affichez le tableau dans la console.
+
+    -------
+    -- 3 --
+    -------
+
+      - Créez un tableau non modifiable contenant des parfums de glace.
+      - Écrivez dans le paragraphe le texte suivant : « Mon parfum préféré c'est
+      XXXX. » en remplaçant XXX par une entrée du tableau.
+
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice 4</h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+<script src="exo4.js"></script>
+</html>

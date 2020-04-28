@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 8</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+
+      ----------------------------------
+        Principe de base des fonctions
+      ----------------------------------
+
+      On utilise, tout comme en JavaScript, des fonctions nommées et des
+      fonctions anonymes. Bien entendu, en TypeScript nous allons devoir typer
+      chaque argument. Par exemple :
+
+      ===code_ts===============================================
+        const addition = (a:number ,b:number) => {
+          console.log(a + b);
+        };
+
+        addition(15,25);
+      =========================================================
+
+      --------------------
+        Valeur de retour
+      --------------------
+
+      On doit également spécifier le type de la valeur retournée.
+      Si la valeur retournée est de type inconnu, on peut utiliser any (tout).
+      S'il n'y a pas de valeur retournée, on peut utiliser void (vide).
+
+      Par exemple :
+
+      ===code_ts===============================================
+        const multiplication = (a: number, b: number): number => {
+          return a * b;
+        };
+
+        alert(multiplication(15,25));
+
+        const test = (a:number, b:number): any => {
+          const resultat = a - b;
+          if (resultat > 0) {
+            return resultat;
+          } else {
+            return false:
+          }
+        };
+
+        alert(test(15,25));
+
+        const addition = (a:number, b:number): void => {
+          console.log(a + b);
+        };
+
+        addition(15,25);
+      =========================================================
+
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+
+      Voici le code JavaScript suivant :
+      ===code_js===============================================
+      var doubler = function(valeur) {
+        return valeur * 2;
+      };
+      console.log(doubler(5));
+
+      var direBonjour = function(nom) {
+        if (nom === undefined) {
+        nom = 'Bart Simpson';
+        }
+        console.log(`Bonjour ${nom}`);
+      };
+      direBonjour('Marc');
+      direBonjour();
+      =========================================================
+      - Créez un document TypeScript dans lequel vous copiez le code ci-dessus.
+      - Adaptez le code de telle sorte qu'il respecte les bonne pratiques en
+      terme de déclarations de variables et que les bons types soient précisés.
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice 8</h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+<script src="exo8.js"></script>
+</html>

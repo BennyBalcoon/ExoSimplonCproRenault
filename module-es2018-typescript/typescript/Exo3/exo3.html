@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 3</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+      En JavaScript, le mot-clé 'var' permet de déclarer des variables qui ont
+      une portée de niveau fonction et auxquelles on peut réassigner des
+      valeurs sans considération de type.
+
+      Le mot-clé 'let' permet de déclarer des variables qui ont une portée de
+      niveau bloc (c'est à dire entre des accolades) et auxquelles on peut
+      réassigner des valeurs sans considération de type.
+
+      Le mot-clé 'const' permet de déclarer des variables qui ont une portée
+      de niveau bloc et auxquelles on NE peut PAS réassigner de valeurs.
+
+      ------------------------------
+        let et const en TypeScript
+      ------------------------------
+
+      En TypeScript on peut utiliser le mot-clé 'var', 'let' ou 'const'. Ces 2
+      derniers sont préférables à moins de vouloir explicitement utiliser le
+      comportement de 'var'.
+
+      La bonne pratique consiste à utiliser 'const' à moins d'avoir réellement
+      besoin de ré-assigner la variable.
+
+      ---------------------
+        var en JavaScript
+      ---------------------
+
+      'var' est le seul mot-clé utilisable en JavaScript <= ES5. Et, il est
+      donc le seul a être correctement interpreté dans certains contextes
+      comme les navigateurs anciens (Internet Explorer < 11 ou Android
+      Browser 4).
+
+      Quand on utilise les mots-clé 'const' ou 'let' en TypeScript, ils sont
+      convertis en mots-clés 'var' lors de la transpilation de TypeScript en
+      JavaScript ES5 (notre cible par défaut).
+
+      ----------------
+        Les booléens
+      ----------------
+      TypeScript gère les booléens de la façon suivante :
+
+      ===code_ts==================================
+        const aimeLeSport: boolean = true;
+      ============================================
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+
+      Soit le code JavaScript suivant :
+      ===code_js===============================================
+        var salutation = 'Bonjour';
+        console.log(salutation);
+
+        var nombreA = 10;
+        var nombreB = 4.52;
+        var produit = nombreA * nombreB;
+        console.log(produit);
+
+        var reponse;
+        reponse = 42;
+        console.log('La réponse est : ' + reponse);
+
+        var choix = false;
+        choix = true;
+        if (choix) {
+          console.log('choix vaut VRAI');
+        }
+      =========================================================
+
+    -------
+    -- 1 --
+    -------
+
+      - Créez un fichier en TypeScript dans lequel vous reprenez le code
+      ci-dessus.
+      - Typez de façon explicite toutes les variables dans votre fichier
+      TypeScript en fonction du type de donnée qui leur est assigné.
+      - Appelez le document JavaScript obtenu par transpilation dans ce
+      document HTML et testez ce dernier dans votre navigateur.
+
+    -------
+    -- 2 --
+    -------
+
+      - Remplacez le mot-clé 'var' par 'const' ou 'let' en fonction de l'usage
+      le plus restrictif, c-à-d que si on ne réassigne jamais la valeur d'une
+      variable, il faudra préférer 'const' à 'let'.
+
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice 3</h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+<script src="exo3.js"></script>
+</html>

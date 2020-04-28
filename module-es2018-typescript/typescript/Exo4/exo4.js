@@ -1,0 +1,10 @@
+var mots = ["sel", "poivre", "persil", "ail"];
+console.log(mots[1]);
+var nombres = [];
+nombres.push(67);
+nombres.push(7);
+nombres.push(43);
+console.log(nombres);
+var parfums = ["pistache", "cassis", "fruit de la passion"];
+var newParagraph = document.getElementsByTagName("p")[0];
+newParagraph.innerHTML = "Mon parfum pr\u00E9f\u00E9r\u00E9 c'est " + parfums[1];
