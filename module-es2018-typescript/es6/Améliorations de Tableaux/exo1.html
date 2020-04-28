@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Améliorations de tableaux</title>
+</head>
+
+<body>
+  <script>
+    /*
+        NOUVEAU !
+        ES6 introduit la boucle `for...of` qui permet d'itérer sur les éléments
+        de n'importe quel objet itérable.
+        
+        Notamment :
+        - les tableaux
+        - les chaînes de caractères
+        - l'objet arguments (disponible à l'intérieur d'une fonction)
+        - l'objet contenu dans la propriété element.classList
+        - les collections d'éléments HTMLCollection
+        - les NodeList
+        - les instances de Set, Map, WeakSet, WeakMap
+      */
+
+    /*
+      1. Crééz 10 div avec la classe (CSS) "row". Chaque div avec la classe
+      "row" contient 8 span avec la classe (CSS) "column". Certains span
+      contiennent des "X" et d'autres des "-" disposés aléatoirement.
+
+      2. Ecrivez un algorithme qui :
+        - Récupère toutes les div avec la classe (CSS) "row";
+        - Pour chaque div avec la class (CSS) "row", récupère tous les span
+          avec la classe (CSS) "column";
+        - affiche dans la console la position de chaque X sous la forme de
+        coordonnées comme par exemple c(3,4) où 3 est l'abscisse et 4
+        l'ordonnée.
+
+        N.B. : Vous utiliserez for... of pour itérer. Vous incrémenterez des
+        variables pour calculer les coordonnées de X. Pour récupérer les
+        collections d'éléments du DOM vous utiliserez la méthode
+        window.document.getElementsByClassName()
+    */
+
+    // let div = window.document.getElementsByClassName("row");
+    // let span = window.document.getElementsByClassName("column");
+    // console.log(div);
+    // console.log(span);
+    for (let i = 0; i < 10; i++) {
+      const div = document.createElement("div");
+      div.className = "row";
+      div.id = "row" + i;
+      document.body.appendChild(div);
+    }
+    const arrDeDiv = window.document.body.getElementsByClassName("row");
+    for (const div of arrDeDiv) {
+      for (let v = 0; v < arrDeDiv.length - 1; v++) {
+        const crossSign = Math.floor(Math.random() * 2);
+        const span = document.createElement("span");
+        span.className = "column";
+        span.id = "col" + v;
+        span.innerHTML = (Object.is(crossSign, 1)) ? "X" : "-";
+        div.appendChild(span);
+      }
+    }
+    const spanDeCol = window.document.body.getElementsByClassName("column");
+    for (const span of spanDeCol) {
+      if (span.innerHTML === "X") {
+        let pos = "c(" + (span.parentElement.id).charAt(3) + "," + (span.id).charAt(3) + ")";
+        console.log(pos);
+      };
+    };
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Améliorations de tableaux</title>
+</head>
+
+<body>
+  <script>
+    /*
+        NOUVEAU !
+        ES6 introduit 2 nouvelles méthodes pour la création de tableaux,
+        `Array.from()` et `Array.of()`.
+
+        `Array.from()` renvoie un nouveau tableau à partir d'un objet itérable
+        (chaîne de caractère par exemple) ou semblable à un tableau.
+
+        On appelle itérable un objet dont les propriétés peuvent être parcourues
+        dans une boucle for
+
+        Un objet semblable à un tableau (array-like) est un objet qui possède
+        une propriété `.length`. Par exemple :
+
+          const tableau = Array.from({ length: 3 });
+          console.log(tableau); // [undefined, undefined, undefined]
+
+        Documentation :
+        - https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/from
+        - https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/of
+      */
+
+    /*
+      1. Créez 10 div qui contiennent chacune un nombre de 1 à 10.
+
+      2. Récuperez une référence à la collection contenant toutes les div du
+      document. Vous pouvez utiliser window.document.getElementsByTagName()
+
+      3. En utilisant Array.from() et son deuxième argument optionnel (voir
+      documentation), obtenez un Array contenant chaque nombre de chaque div.
+      (c'est à dire [1,2,3,4,5,6,7,8,9,10])
+    */
+
+    for (let i = 1; i <= 10; i++) {
+      const div = document.createElement('div');
+      div.className = 'div';
+      // div.id = "div" + i;
+      div.innerHTML = i;
+      document.body.appendChild(div);
+    }
+
+    // Solution 1
+
+    var coll = document.getElementsByTagName('div');
+    var arr = [];
+    for (var i = 0; i < coll.length; i++) {
+      arr.push(coll[i].innerHTML);
+    };
+
+    console.log(arr);
+
+    // Solution 2
+
+    var collection = window.document.getElementsByTagName('div');
+
+    var collectionArray = Array.from({
+      length: collection.length
+    }, (v, k) => k + 1);
+
+    var result = Array.from(collectionArray);
+    console.log(result);
+
+    // Solution 3
+
+    const div = document.getElementsByTagName("div");
+    const div_array = Array.from(div, element => Number(element.innerHTML));
+    console.log(div_array);
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+
+</html>

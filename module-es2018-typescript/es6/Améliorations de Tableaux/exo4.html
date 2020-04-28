@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Améliorations de tableaux</title>
+</head>
+
+<body>
+    <script>
+        /*
+        NOUVEAU !
+        ES6 introduit 2 nouvelles méthodes d'instance pour modifier le contenu
+        d'un tableau, `Array.prototype.fill()` et `Array.prototype.copyWithin()`.
+
+        `Array.prototype.fill(valeur [, début] [, fin])`
+
+        /!\ ATTENTION : ces deux méthodes sont destructives ! La référence au
+        tableau renvoyé est la même que la référence au tableau fourni.
+        Autres exemples de méthodes destructives :
+          - Array.prototype.pop()
+          - Array.prototype.push()
+          - Array.prototype.reverse()
+          - Array.prototype.shift()
+          - Array.prototype.sort()
+          - Array.prototype.splice()
+          - Array.prototype.unshift()
+      */
+
+        /*
+          1. Tester la méthode .fill() dans la console de votre navigateur.
+
+          N.B : C'est un exercice reposant :)
+        */
+
+        var array = [56, 7, 8, 44, 72, 90, 1];
+        array.fill("satan");
+        console.log(array);
+        array.fill(666, 2, 4);
+        console.log(array);
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>
