@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 13</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+
+      Les interfaces comportent un mécanisme pour définir des propriétés en
+      lecture seule. On utilise le mot-clef 'readonly' avant le nom de la
+      propriété. Il s'agit, quelque sorte, d'un équivalent de const utilisé pour
+      protéger en écriture les propriétés d'objets.
+
+      Par exemple :
+
+      ===code_ts=================================
+        interface ValeursMaximales {
+          readonly parties: number;
+          readonly somme: number;
+        }
+
+        let personnage1 : ValeursMaximales = { parties: 5, somme: 60 };
+        personnage1.parties = 3; // erreur !
+      ===========================================
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+
+    -------
+    -- 1 --
+    -------
+      Reprenez le code de l'exercice précédent. Modifiez le de telle façon que
+      le nom et le type soient en lecture seule
+
+    -------
+    -- 2 --
+    -------
+      Essayez de modifier le nom ou le type d'une recette après son
+      initialisation. Constatez l'erreur.
+
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice </h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+</html>

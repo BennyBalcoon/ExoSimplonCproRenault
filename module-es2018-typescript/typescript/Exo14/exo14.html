@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 14</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+      Comme en JavaScript depuis ES2015, TypeScript permet l'utilisation du
+      mot clé 'class' comme sucre syntaxique offrant une alternative aux
+      fonctions constructeur.
+
+      Une "classe" peut implémenter une interface. En d'autres termes, elle peut
+      être déclarée de telle sorte qu'elle soit obligée de respecter une
+      déclaration d'interface.
+
+      Le principe de base est le suivant :
+
+      ===ts_code==================================
+      {
+        interface DiscoursInterface {
+          allocution: string;
+          parler: (this:Discours) => void
+        }
+
+        class Discours implements DiscoursInterface {
+          allocution: string;
+          constructor (texte: string) {
+            this.allocution = texte;
+          }
+          parler(this:Discours) {
+            window.alert(`Voici le discours : ${this.allocution}.`);
+          }
+        }
+
+        const unDiscours = new Discours('Bonjour à tous');
+
+        unDiscours.parler();
+      }
+      ============================================
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+
+    -------
+    -- 1 --
+    -------
+      - Nous allons créer un rectangle au moyen d'une classe. Nous définirons sa
+      largeur, sa hauteur et ses coordonnés ;
+      - Créez cette classe. Pensez bien à donner un type à chaque propriété et
+      chaque argument du constructeur ;
+      - Utilisez la class pour créer un rectangle ;
+      - Affichez le rectangle dans la console.
+
+    -------
+    -- 2 --
+    -------
+      - Par défaut, le constructeur fixe une largeur de 100 et une hauteur égale
+      à la largeur.
+
+    -------
+    -- 3 --
+    -------
+      - Ajoutez une méthode à la classe ;
+      - Cette méthode permet de modifier la position du rectangle vers des
+      coordonnées fournies en paramétre ;
+      - Si une ou les deux coordonnés ne sont pas fournies, conservez les
+      valeurs actuelles ;
+      - À la suite de la création du rectangle, modifiez sa position et affichez
+      les informations de ce rectangle dans la console.
+
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice 14</h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+  <script src="exo14.js"></script>
+</body>
+</html>

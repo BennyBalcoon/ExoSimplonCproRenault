@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 11</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+
+      ------------
+        Principe
+      ------------
+
+      En JavaScript, un objet est un type de données composé de plusieurs
+      propriétés. Ces propriétés peuvent contenir des type primitifs (number,
+      string ou boolean) ou des types composés (function ou object).
+
+      En TypeScript, le type d'un objet se déclare à l'aide d'une interface. Une
+      interface décrit en détail les types de données contenus dans un objet. On
+      notera que dans le cas ou une propriété d'un objet contient une référence
+      à un type composé, on devra alors avoir déclaré (au préalable) une
+      interface lui correspondant.
+
+      -----------------
+        Mise en œuvre
+      -----------------
+
+      Pour déclarer une interface, on utilise le mot-clé 'interface' suivi d'un
+      nom de notre choix identifiant l'interface. Par exemple :
+
+      ===code_ts===============================================
+        interface Identite {
+          nom: string;
+          pays: string;
+          age: number;
+        }
+      =========================================================
+
+      Nous pouvons ensuite utiliser cette interface pour déclarer le type d'un
+      objet ou préciser le type d'un argument d'une fonction :
+
+      ===code_ts===============================================
+        const utilisateur: Identite = {
+          nom: 'Pierre',
+          pays: 'France',
+          age: 21
+        };
+
+        function bonjour(personne: Identite) {
+          console.log(`${personne.nom} a ${personne.age} ans et vie en ${personne.pays}`);
+        }
+
+        bonjour(utilisateur);
+      =========================================================
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+
+    -------
+    -- 1 --
+    -------
+      - Une fiche de film comporte
+      les informations suivantes :
+        - titre (texte)
+        - réalisateur (texte)
+        - année de tournage (nombre)
+      - Créez une interface détaillant les caractéristiques d'une fiche de film.
+      - Utilisez la notation littérale pour créér deux fiches de film
+
+    -------
+    -- 2 --
+    -------
+
+      - Ajoutez à l'interface le(s) genre(s) de chaque film (attention, il
+      peut y avoir un comme plusieurs genres).
+
+    -------
+    -- 3 --
+    -------
+
+      - Créez une fonction qui prendra comme argument une fiche de film et
+      retournera la phrase suivante : « TITRE_DE_FILM a été réalisé par
+      RÉALISATEUR en ANNÉE. Il est de genre(s) : GENRES ».
+      - Utilisez la fonction avec les deux fiches de film.
+
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice 11</h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+  <script src="exo11.js"></script>
+</body>
+</html>

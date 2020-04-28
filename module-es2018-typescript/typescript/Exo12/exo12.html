@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 12</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+
+      Lorsqu'on déclare une interface, on peut définir des propriétés
+      optionnelles. Chaque propriété optionnelle possède un point
+      d'interrogation à la fin de sa déclaration de type.
+
+      En voici un exemple :
+
+      ===code_ts=================================
+        interface Materiaux {
+          pneus?: boolean;
+          ailes?: boolean;
+          fuselage?: boolean;
+          carrosserie?: boolean;
+        }
+
+        interface Vehicule {
+          avion?: boolean;
+          voiture?: boolean;
+        }
+
+        const usineDeVehicules: (enEntree: Materiaux) => Vehicule = function(enEntree: Materiaux) : Vehicule {
+          if (enEntree.pneus && enEntree.carrosserie) {
+            return {
+              voiture: true,
+            };
+          }
+          if (enEntree.ailes && enEntree.fuselage) {
+            return {
+              avion: true,
+            };
+          }
+          return {};
+        }
+
+        let monVehicule = usineDeVehicules({
+          ailes: true,
+          fuselage: true,
+        });
+      ============================================
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+
+    -------
+    -- 1 --
+    -------
+      - Créez une interface pour des recettes. Un recette comprendra les
+      éléments suivants :
+        - nom
+        - nombre de personnes
+        - type (plat, dessert…)
+        - ingrédients (liste optionnelle)
+        - prix (texte optionnel : bon marché, coûteux…)
+      - Créez deux recettes en vous basant sur l'interface déclarée. La première
+      recette contient une liste d'ingrédients mais pas de prix. La deuxième
+      recette contient un prix mais ne contient pas de liste d'ingrédients.
+
+    -------
+    -- 2 --
+    -------
+
+      - Créez une fonction qui reçoit en paramétre une recette. SI la recette a
+      des ingrédients et est pour plus de 4 convives, la fonction affiche dans
+      le document le nom de la recette suivi des ingrédients de la recette.
+      SINON, SI la recette a un prix, la fonction affiche dans le document le
+      nom de la recette suivi de son prix. SINON, la fonction affiche le nom de
+      la recette uniquement.
+
+      - Quand vous souhaitez déclarer le type d'une variable contenant une
+      donnée de type élément HTML, écrivez le code suivant :
+
+      ===code_ts=============================================
+        const unElement: HTMLParagraphElement = <HTMLParagraphElement>document.createElement('p');
+      =======================================================
+
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice 12</h1>
+  <p id="miam"></p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+  <script src="exo12.js"></script>
+</body>
+</html>
