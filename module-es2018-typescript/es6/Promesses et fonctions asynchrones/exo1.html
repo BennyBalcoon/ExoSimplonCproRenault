@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Promesses et fonctions asynchrones</title>
+</head>
+
+<body>
+    <script>
+        /*********************************
+      ********** PRÉSENTATION **********
+      **********************************
+        NOUVEAU !
+        ES6 ouvre de nouvelles possibilités pour l'écriture de code asynchrone avec l'introduction 
+        des promesses.
+
+        Une promesse est un objet représentant une opération (ou suite d'opérations) asynchrone 
+        et peut se trouver dans 3 états :
+        - "pending" : promesse en attente
+        - "resolved / fulfilled" : promesse tenue (terminée sans erreur)
+        - "rejected" : promesse non tenue (terminée avec erreur)
+
+        On dit aussi qu'une promesse est dans l'état "settled" (conclue) lorsqu'elle est soit 
+        "resolved / fulfilled" (résolue) soit "rejected" (rejetée), c'est-à-dire qu'elle n'est 
+        plus "pending" (en attente).
+
+        Les objets de type "promesse" sont créés à partir de la fonction constructeur Promise.
+
+        Documentation utile :
+        https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise
+      */
+
+        /*********************************
+        ************ EXERCICE ************
+        **********************************
+          On souhaite créer une loterie avec 20% de chances de gagner et où le tirage dure entre 
+          1 et 5 secondes.
+
+          1. Créez une fonction loterie qui renvoie un objet de type Promise.
+          Cet objet sera instancié à partir de la fonction constructeur Promise à laquelle vous 
+          fournirez en argument une fonction de rappel (callback) prenant à son tour en paramètre 
+          une fonction que vous appellerez resoudreLaPromesse.
+
+          2. Pour l'instant notre fonction loterie ne fait que renvoyer des promesses dans 
+          l'état "pending". Vérifiez que c'est le cas en affichant la valeur de retour de loterie() 
+          dans la console.
+
+          3. Dans la callback fournie au constructeur de la promesse, générez un nombre aléatoire 
+          entre 1000 et 5000 et affichez dans la console le message "Votre temps d'attente est 
+          estimé à X secondes", où X est le nombre de secondes au bout duquel la promesse sera 
+          résolue ("resolved") arrondi à l'entier supérieur.
+
+          4. Faites en sorte de résoudre la promesse au bout du nombre de ms généré en appelant 
+          la fonction resoudreLaPromesse dans un appel à window.setTimeout(). Stockez cette fois 
+          la valeur de retour de la fonction et attendez quelques secondes avant d'afficher 
+          sa valeur dans la console. La promesse devrait cette fois se trouver dans 
+          l'état "resolved".
+
+          5. Afin que la promesse fournisse une valeur au moment de sa résolution il faut passer 
+          la valeur que l'on souhaite à resoudreLaPromesse. Toujours dans la callback de la 
+          fonction constructeur, générez un nombre aléatoire entre 0 et 1. Résolvez la promesse 
+          avec ce nombre.
+          
+          6. Cette fois, sachant que loterie renvoie une promesse, chaînez la méthode .then() 
+          à l'appel à loterie() et fournissez une callback à .then() qui prendra pour argument 
+          la valeur de résolution de la promesse.
+
+          Si la valeur est inférieure ou égale à 0.2 (20% de chances de gagner), affichez 
+          "On a un gagnant !", sinon "C'est perdu, retentez votre chance...".
+        */
+
+        // let lotery = () => {
+        //     return new Promise((resoudreLaPromesse) => {
+        //             // Ici tu fais ta logique à exécuter et une fois le travail fini,
+        //             // tu appelles la fonction resoudreLaPromesse:
+        //             let randomNumber = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+        //             let random0to1 = Math.random();
+        //             console.log(randomNumber);
+        //             console.log(`Votre temps d'attente est estimé à ${randomNumber/ 1000} secondes`);
+        //             // A bout de X millisecondes, tu déclenches la fonction resoudreLaPromesse
+        //             // qui t'ammeneras dans le bloc then suivant. Si tu passes un argument à cette fonction,
+        //             // tu le retrouveras comme arguments du callback du bloc then suivant.
+        //             window.setTimeout(() => {
+        //                 resoudreLaPromesse(random0to1)
+        //             }, randomNumber);
+        //         })
+        //         .then((valeur) => {
+        //             valeur <= 0.2 ? console.log("On a un gagnant!") : console.log(
+        //                 "C'est perdu, retentez votre chance...");
+        //         });
+        // };
+
+        // lotery();
+
+        let lotery = () => {
+            return new Promise((resolve, reject) => {
+                    // Ici on fait la logique à exécuter et une fois le travail fini,
+                    // on appelle la fonction resoudreLaPromesse/resolve:
+                    let randomNumber = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+                    console.log(randomNumber);
+                    console.log(`Votre temps d'attente est estimé à ${randomNumber / 100} secondes`);
+                    // A bout de X millisecondes, on déclenche la fonction resoudreLaPromesse
+                    // qui ammenera dans le bloc then suivant. Si on passe un argument à cette fonction,
+                    // on le retrouvera comme argument du callback du bloc then suivant.
+                    window.setTimeout(() => {
+                        if (Math.random() <= 0.2) {
+                            // On résoud la promesse.
+                            // On va se retrouver directement dans le bloc then,
+                            // sans passer par le bloc catch
+                            resolve("On a un gagnant!");
+                        } else {
+                            // On rejette la promesse.
+                            // On va se retrouve dans le bloc catch,
+                            // sans passer par le bloc then
+                            reject("C'est perdu, retentez votre chance...");
+                        }
+                    }, randomNumber);
+                })
+                .then((valeur) => {
+                    console.log(valeur);
+                })
+                .catch((erreur) => {
+                    console.log(erreur);
+                });
+        };
+
+        lotery();
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>
