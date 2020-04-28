@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Améliorations de fonctions</title>
+</head>
+
+<body>
+  <script>
+    /*********************************
+      ********** PRÉSENTATION **********
+      **********************************
+        NOUVEAU !
+        ES6 introduit une nouvelle syntaxe pour déclarer des fonctions avec les "fonctions fléchées".
+
+        Une fonction fléchée se présente comme suit :
+        - on écrit la liste de ses arguments séparés par des virgules, entourée de parenthèses (parenthèses optionnelles lorsqu'il n'y a qu'un seul argument)
+        - on fait suivre les arguments du symbole =>
+        - on écrit le corps de la fonction entre {} comme pour une fonction classique
+        - si la fonction comporte seulement une instruction return, on peut omettre les {} ainsi que le mot-clé return et écrire directement la valeur de retour de la fonction à droite du symbole =>.
+
+        Exemples :
+        /--------------------------------------------------------
+          const changerTitreDeLaPage = nouveauTitre => {
+            document.title = nouveauTitre;
+          }
+          const doubler = x => 2 * x;
+          const pair = x => x % 2 === 0;
+          [2, 4, 1, 3].sort((a, b) => a - b); // [1, 2, 3, 4]
+          [1, 2, 3, 4, 5].filter(pair); // [2, 4]
+        --------------------------------------------------------/
+
+        REMARQUES :
+        - Les fonctions fléchées ne peuvent PAS être utilisées comme constructeurs.
+
+        - Le mot-clé `arguments` (objet itérable contenant la liste des valeurs passées à la fonction) n'est pas accessible dans une fonction fléchée.
+
+        - Il est DÉCONSEILLÉ d'utiliser les fonctions fléchées pour déclarer des méthodes d'objets.
+
+        - Si l'on souhaite réutiliser une fonction fléchée il faudra l'affecter à une variable. Le nom de la variable deviendra l'identifiant de la fonction fléchée et la propriété `name` de la fonction prendra pour valeur le nom de la variable entouré de "".
+
+        - On dit qu'une fonction fléchée est anonyme lorsqu'elle est déclarée sans être affectée à une variable. En général ce type de fonction est utilisé là où une fonction de rappel (callback function) est attendue.
+
+        - Dans le cas d'une fonction fléchée sans le mot-clé return, où la valeur de retour est un objet littéral ({ ... }), l'objet renvoyé doit être entouré de () pour ne pas le confondre avec un bloc d'instructions.
+
+          Exemple :
+            const assembler = (nom, desciption) => ({
+              nom,
+              description
+            }); // syntaxe objet raccourcie
+
+        - Les parenthèses autour des arguments sont facultatives dans le cas d'un seul argument, dans tous les autres cas elles sont obligatoires. Si la fonction prend en argument un objet ou un tableau passé avec la syntaxe de décomposition, la liste d'arguments devra être entourée de parenthèses (même s'il n'y a qu'un seul argument).
+
+          Exemple :
+            // Ici on décompose explicitement la propriété age de l'unique objet passé en paramètre, les accolades doivent être entourées de ()
+            const direAge = ({ age }) => {
+              console.log(`Vous avez ${age} ${age > 1 ? "ans" : "an"}.`);
+            };
+            direAge({ age: 5 }); // "Vous avez 5 ans."
+            direAge({ age: 1 }); // "Vous avez 1 an."
+
+            const additionnerTableauA2Valeurs = ([a, b]) => a + b;
+            additionnerTableauA2Valeurs([3, 4]); // 7
+      */
+
+    /*********************************
+      ************ EXERCICE ************
+      **********************************
+        Tous les exercices suivants sont à réaliser en utilisant des FONCTIONS FLÉCHÉES.
+
+        1. Écrivez une fonction qui ne prend aucun argument et ne fait rien.
+
+        2. Écrivez une fonction qui ne prend aucun argument mais renvoie soit true, soit false avec une probabilité de 50%.
+
+        3. Écrivez une fonction qui prend en entrée deux nombres et renvoie leur somme.
+
+        4. Créez un tableau de nombres et utilisez la méthode map pour porter chaque nombre au carré.
+
+        5. Créez un tableau contenant tous les nombres de 1 à 100. À l'aide de la méthode reduce, calculez la somme du carré de chaque nombre impair compris entre 1 et 100, pour les indices multiples de 3.
+
+        6. Écrivez une fonction qui prend en argument une entrée, un plat et un dessert et renvoie un objet représentant un repas complet.
+
+        7.a Créez un objet avec 3 paires clé / valeur et dont les valeurs sont des chaînes de caractères. Récupérez la liste des entrées de cet objet avec la méthode Object.entries.
+
+        7.b Bouclez sur les entrées de l'objet à l'aide de la méthode map, dont la fonction de rappel recevra en argument un tableau à 2 entrées dont la première sera une clé et la seconde une valeur (utilisez la syntaxe de déstructuration pour l'argument représentant le tableau). Vous devrez obtenir en sortie de map un nouveau tableau d'entrées dont les clés et les valeurs sont interverties.
+
+        7.c Utilisez la méthode .reduce sur le tableau d'entrées obtenu précédemment pour créer un nouvel objet dont les clés et les valeurs seront interverties par rapport à l'objet de départ.
+
+        8.a Écrivez une fonction que vous appelerez appliquerDeuxFois et qui prend en argument une fonction. La fonction appliquerDeuxFois renvoie à son tour une fonction qui prend quant à elle en argument un nombre et applique deux fois d'affilée à ce nombre la première fonction fournie en argument à appliquerDeuxFois.
+
+        8.b Utilisez la fonction appliquerDeuxFois pour créer une fonction puissance4 à partir d'une fonction qui porte un nombre au carré. Testez votre fonction puissance4 sur un nombre (dans cet exo vous n'utiliserez aucune paire d'accolades).
+      */
+
+    // 1
+    const neFaitRien = () => {};
+
+    // 2
+    const renvoieTrueOrFalse = () => {
+      let trueOrFalse = Math.round(Math.random());
+      console.log(trueOrFalse);
+      if (trueOrFalse < 0.5) {
+        console.log(false);
+      } else {
+        console.log(true);
+      }
+    };
+
+    renvoieTrueOrFalse();
+
+    // 3
+    const renvoieSomme = (a, b) => {
+      return a + b;
+    };
+
+    // 4
+    let arrayDeNombres = [23, 6, 90, 7, 2, 11];
+    const mapDeLArray = arrayDeNombres.map(e => e * e);
+    console.log(mapDeLArray);
+
+    // 5
+    let arrayTo100 = Array.from(Array(101).keys());
+    arrayTo100.shift();
+    console.log(arrayTo100);
+
+    let result = arrayTo100.reduce((acc, cur, index) => {
+      if (index % 3 == 0 && cur % 2 != 0) {
+        acc += cur * cur;
+      }
+      return acc;
+    });
+    console.log(result);
+
+    // 6
+    const monRepas = (entree, plat, dessert) => {
+      return {
+        entree: entree,
+        plat: plat,
+        dessert: dessert,
+      };
+    };
+    console.log(monRepas('soupe', 'pizza', 'pomme'));
+
+    // 7.a
+    const maVoiture = {
+      marque: 'renault',
+      modele: 'twingo',
+      annee: '1994',
+    };
+
+    const listeEntrees = Object.entries(maVoiture);
+    console.log(listeEntrees);
+
+    // 7.b
+    const listeALEnvers = listeEntrees.map(([cle, valeur]) => [valeur, cle]);
+    console.log(listeALEnvers);
+
+    // 7.c
+
+    // 8.a Écrivez une fonction que vous appelerez appliquerDeuxFois et qui
+    // prend en argument une fonction. La fonction appliquerDeuxFois renvoie
+    // à son tour une fonction qui prend quant à elle en argument un nombre
+    // et applique deux fois d'affilée à ce nombre la première fonction fournie
+    // en argument à appliquerDeuxFois.
+
+    let appliquerDeuxFois = uneFonction => (unNombre) => uneFonction(uneFonction(unNombre));
+
+    // 8.b Utilisez la fonction appliquerDeuxFois pour créer une fonction
+    // puissance4 à partir d'une fonction qui porte un nombre au carré.
+    // Testez votre fonction puissance4 sur un nombre (dans cet exo vous
+    // n'utiliserez aucune paire d'accolades).
+
+    let puissance4 = appliquerDeuxFois(unNombre => unNombre * unNombre);
+    console.log(puissance4(5));
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+
+</html>

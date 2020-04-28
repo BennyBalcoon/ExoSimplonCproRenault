@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Améliorations de fonctions</title>
+</head>
+
+<body>
+    <script>
+        /*********************************
+      ********** PRÉSENTATION **********
+      **********************************
+        NOUVEAU !
+        ES6+ introduit les paramètres de reste ("rest parameters"), permettant de recueillir 
+        un nombre variable de valeurs fournies en arguments à une fonction à la suite des arguments
+        attendus, et de les placer sous la forme d'un tableau dans un paramètre (précédé de ...).
+        Le paramètre de reste est UNIQUE et ne peut se placer qu'à la FIN de la liste d'arguments.
+
+        Documentation : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
+
+        Syntaxe :
+          function nomDeLaFonction(p1, p2, p3, ...parametreDeReste) {
+            ...
+          }
+
+        RAPPEL :
+        En ES5, on pouvait utiliser le mot-clé `arguments` accessible à l'intérieur du corps 
+        d'une fonction pour accéder à un nombre variable d'arguments.
+
+        ES6+ :
+        /--------------------------------------------------------
+          // La fonction additionner accepte un nombre variable d'arguments
+          // et les place dans un paramètre appelé `nombres` sous la forme d'un
+          // tableau de valeurs
+          function additionner(...nombres) {
+            return nombres.reduce(
+              (total, nombreCourant) => total + nombreCourant,
+              0
+            );
+          }
+          additionner(1, 2, 3, 4); // 10
+
+          // Marche aussi avec les fonctions fléchées
+          const faireUnePhrase = (...mots) => mots.join(" ");
+          faireUnePhrase("L'ES6", "c'est", "fantastique", "!"); // "L'ES6 c'est fantastique !"
+        --------------------------------------------------------/
+        
+        ES5 :
+        /--------------------------------------------------------
+          fonction additionner() {
+            var args = Array.prototype.slice.call(arguments);
+            return args.reduce(function(total, nombreCourant) {
+              return total + nombreCourant;
+            }, 0);
+          }
+          additionner(1, 2, 3, 4); // 10
+        --------------------------------------------------------/
+      */
+
+        /*********************************
+        ************ EXERCICE ************
+        **********************************
+          1. Écrivez une fonction pizzaFactory qui prend en premier argument un type de pizza, 
+          en second le type de pâte (épaisse, fine, fourrée au fromage), en troisième la taille 
+          (individuelle, medium, familiale) et enfin un nombre variable de garnitures supplémentaires 
+          (champignons, anchois, etc.).
+
+          2. Une pizza individuelle coûte 6 euros, une medium 10 euros et une familiale 15 euros. 
+          Les pâtes fines et épaisses n'induisent aucun supplément, en revanche la pâte fourrée au 
+          fromage coûte +2 €. Chaque ingrédient supplémentaire coûte +1 €. Faites en sorte que la 
+          fonction pizzaFactory renvoie le prix de la pizza choisie.
+        */
+        let pizzaIndividuelle = 6;
+        let pizzaMedium = 10;
+        let pizzaFamiliale = 15;
+        let pateFine = 0;
+        let pateEpaisse = 0;
+        let pateFouree = 2;
+        let nbGarnitures;
+
+        function pizzaFactory(...args) {
+            return args.reduce((previous, current) => {
+                return previous + current;
+            });
+        };
+
+        console.log(pizzaFactory(pizzaMedium, pateFouree, 4));
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>
