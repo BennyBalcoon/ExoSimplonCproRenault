@@ -1,0 +1,19 @@
+{
+  "name": "cours-rxjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "VirtuoWorks® - tous droits réservés©",
+  "dependencies": {
+    "rxjs": "^6.5.4"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
