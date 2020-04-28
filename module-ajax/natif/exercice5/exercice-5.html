@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercice 5</title>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      const countrySelection = window.document.createElement('select');
+      countrySelection.id = 'country-selection';
+      const defaultOption = document.createElement('option');
+      defaultOption.text = 'Select';
+
+      let regionSelection = window.document.createElement('select');
+      let citySelection = window.document.createElement('select');
+
+      let formCountry = window.document.createElement('form');
+      formCountry.id = 'form-country';
+      formCountry.innerHTML =
+        formCountry.innerHTML +
+        'Nouveau pays: <input type="text" name= "name"/><br>Langue: <input type="text" name="language"/><br><input type="submit" value="Enregistrer"/>';
+
+      let formRegion = window.document.createElement('form');
+      formRegion.id = 'form-region';
+      formRegion.innerHTML =
+        formRegion.innerHTML +
+        'Nouvelle région: <input type="text" name= "name"/><br><input type="submit" value="Enregistrer"/>';
+
+      let formCity = window.document.createElement('form');
+      formCity.id = 'form-city';
+      formCity.innerHTML =
+        formCity.innerHTML +
+        'Nouvelle ville: <input type="text" name= "name"/><br><input type="submit" value="Enregistrer"/>';
+
+      const createSelectCountriesList = () => {
+        const xhrForCountriesList = new XMLHttpRequest();
+        const urlCountries = 'http://localhost:8080/country';
+        xhrForCountriesList.open('GET', urlCountries);
+        xhrForCountriesList.send();
+        console.log(xhrForCountriesList);
+        xhrForCountriesList.addEventListener('load', function () {
+          countrySelection.add(defaultOption);
+          console.log(countrySelection);
+          let countryObject = JSON.parse(xhrForCountriesList.responseText);
+          console.log(countryObject);
+          for (let i = 0; i < countryObject.length; i++) {
+            countrySelection.innerHTML =
+              countrySelection.innerHTML +
+              '<option value="' +
+              countryObject[i]['id'] +
+              '">' +
+              countryObject[i]['name'] +
+              '</option>';
+          }
+          document.body.appendChild(countrySelection);
+          document.body.appendChild(formCountry);
+        });
+      };
+
+      createSelectCountriesList();
+
+      formCountry.addEventListener('submit', function (submitEvent) {
+        submitEvent.preventDefault();
+        const inputs = window.document.getElementsByTagName('input');
+        console.log(inputs);
+        const name = inputs[0].value;
+        const language = inputs[1].value;
+        console.log(language);
+
+        const json = {
+          language: `${language}`,
+          name: `${name}`,
+        };
+        console.log(json);
+        console.log(JSON.stringify(json));
+        const url = 'http://localhost:8080/country';
+        const method = 'POST';
+
+        const xhrPostCountry = new XMLHttpRequest();
+        xhrPostCountry.open(method, url);
+        xhrPostCountry.setRequestHeader('Content-Type', 'application/json');
+        xhrPostCountry.send(JSON.stringify(json));
+
+        xhrPostCountry.addEventListener('load', function () {
+          if (200 === xhrPostCountry.status) {
+            window.alert('Sauvegardé !');
+            const selectCountryToRemove = window.document.getElementById(
+              'country-selection'
+            );
+            console.log(selectCountryToRemove);
+            selectCountryToRemove.parentNode.removeChild(selectCountryToRemove);
+            createSelectCountriesList();
+          } else {
+            window.alert('error');
+          }
+        });
+      });
+
+      countrySelection.addEventListener('change', function () {
+        if (window.document.getElementById('region-select')) {
+          const regionToRemove = window.document.getElementById(
+            'region-select'
+          );
+          console.log(regionToRemove);
+          regionToRemove.parentNode.removeChild(regionToRemove);
+        }
+        if (window.document.getElementById('city-select')) {
+          const cityToRemove = window.document.getElementById('city-select');
+          console.log(cityToRemove);
+          cityToRemove.parentNode.removeChild(cityToRemove);
+        }
+        if (
+          countrySelection.options[countrySelection.selectedIndex].index !== 0
+        ) {
+          if (window.document.getElementById('form-country')) {
+            const formToRemove = window.document.getElementById(
+              'form-country'
+            );
+            console.log(formToRemove);
+            formToRemove.parentNode.removeChild(formToRemove);
+          }
+          const xhrForRegionsList = new XMLHttpRequest();
+          let countryId =
+            countrySelection.options[countrySelection.selectedIndex].value;
+          console.log(countryId);
+          const urlRegions = `http://localhost:8080/country/${countryId}/region`;
+          xhrForRegionsList.open('GET', urlRegions);
+          xhrForRegionsList.send();
+          console.log(xhrForRegionsList);
+          xhrForRegionsList.addEventListener('load', function () {
+            let regionObject = JSON.parse(xhrForRegionsList.responseText);
+            console.log(regionObject);
+            regionSelection.add(defaultOption);
+            for (let i = 0; i < regionObject.length; i++) {
+              regionSelection.innerHTML =
+                regionSelection.innerHTML +
+                '<option value="' +
+                regionObject[i]['id'] +
+                '">' +
+                regionObject[i]['name'] +
+                '</option>';
+            }
+            document.body.appendChild(regionSelection);
+            document.body.appendChild(formRegion);
+            console.log(regionSelection);
+
+            formRegion.addEventListener('submit', function (submitEvent) {
+              submitEvent.preventDefault();
+              const inputs = window.document.getElementsByTagName('input');
+              console.log(inputs);
+              const name = inputs[0].value;
+
+              const json = {
+                name: `${name}`,
+              };
+              console.log(json);
+              const url = `http://localhost:8080/country/${countryId}`;
+              const method = 'POST';
+
+              const xhrPostRegion = new XMLHttpRequest();
+              xhrPostRegion.open(method, url);
+              xhrPostRegion.setRequestHeader(
+                'Content-Type',
+                'application/json'
+              );
+              xhrPostRegion.send(JSON.stringify(json));
+
+              xhrPostRegion.addEventListener('load', function () {
+                if (200 === xhrPostRegion.status) {
+                  window.alert('Sauvegardé !');
+                } else {
+                  window.alert('error');
+                }
+              });
+            });
+          });
+        } else {
+          document.body.appendChild(formCountry);
+          if (window.document.getElementById('form-region')) {
+            const formRegionToRemove = window.document.getElementById(
+              'form-region'
+            );
+            console.log(formRegionToRemove);
+            formRegionToRemove.parentNode.removeChild(formRegionToRemove);
+          }
+          if (window.document.getElementById('form-city')) {
+            const formCityToRemove = window.document.getElementById(
+              'form-city'
+            );
+            console.log(formCityToRemove);
+            formCityToRemove.parentNode.removeChild(formCityToRemove);
+          }
+        }
+
+        regionSelection = window.document.createElement('select');
+        regionSelection.id = 'region-select';
+
+        regionSelection.addEventListener('change', function () {
+          if (window.document.getElementById('city-select')) {
+            const cityToRemove = window.document.getElementById(
+              'city-select'
+            );
+            console.log(cityToRemove);
+            cityToRemove.parentNode.removeChild(cityToRemove);
+          }
+
+          citySelection = window.document.createElement('select');
+          citySelection.id = 'city-select';
+          if (
+            countrySelection.options[countrySelection.selectedIndex].index !==
+            0 &&
+            regionSelection.options[regionSelection.selectedIndex].index === 0
+          ) {
+            document.body.appendChild(formRegion);
+          }
+          if (
+            regionSelection.options[regionSelection.selectedIndex].index !== 0
+          ) {
+            if (window.document.getElementById('form-region')) {
+              const formRegionToRemove = window.document.getElementById(
+                'form-region'
+              );
+              console.log(formRegionToRemove);
+              formRegionToRemove.parentNode.removeChild(formRegionToRemove);
+            }
+            const xhrForCitiesList = new XMLHttpRequest();
+            let regionId =
+              regionSelection.options[regionSelection.selectedIndex].value;
+            console.log(regionId);
+            const urlCities = `http://localhost:8080/country/region/${regionId}/city`;
+            xhrForCitiesList.open('GET', urlCities);
+            xhrForCitiesList.send();
+            console.log(xhrForCitiesList);
+            xhrForCitiesList.addEventListener('load', function () {
+              let cityObject = JSON.parse(xhrForCitiesList.responseText);
+              console.log(cityObject);
+              citySelection.add(defaultOption);
+              for (let i = 0; i < cityObject.length; i++) {
+                citySelection.innerHTML =
+                  citySelection.innerHTML +
+                  '<option value="' +
+                  cityObject[i]['id'] +
+                  '">' +
+                  cityObject[i]['name'] +
+                  '</option>';
+              }
+              document.body.appendChild(citySelection);
+              console.log(
+                citySelection.options[citySelection.selectedIndex].index
+              );
+              if (
+                countrySelection.options[countrySelection.selectedIndex]
+                .index !== 0 &&
+                regionSelection.options[regionSelection.selectedIndex]
+                .index !== 0 &&
+                citySelection.options[citySelection.selectedIndex].index === 0
+              ) {
+                document.body.appendChild(formCity);
+              }
+            });
+          } else {
+            if (window.document.getElementById('form-city')) {
+              formCityToRemove = window.document.getElementById('form-city');
+              console.log(formCityToRemove);
+              formCityToRemove.parentNode.removeChild(formCityToRemove);
+            }
+          }
+
+          citySelection.addEventListener('change', function () {
+            console.log(
+              citySelection.options[citySelection.selectedIndex].index
+            );
+            if (
+              citySelection.options[citySelection.selectedIndex].index !== 0
+            ) {
+              if (window.document.getElementById('form-city')) {
+                formCityToRemove = window.document.getElementById(
+                  'form-city'
+                );
+                console.log(formCityToRemove);
+                formCityToRemove.parentNode.removeChild(formCityToRemove);
+              }
+            } else {
+              document.body.appendChild(formCity);
+            }
+          });
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <p>Choisissez un pays :</p>
+</body>
+
+</html>
