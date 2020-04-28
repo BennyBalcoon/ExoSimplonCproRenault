@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Chaînes et littéraux de gabarits (template strings)</title>
+</head>
+
+<body>
+    <script>
+        /*
+        NOUVEAU !
+        ES6 introduit la possibilité de créer des chaînes de caractères appelées
+        littéraux de gabarits ("template strings") en déclarant la chaîne
+        entourée de ` (accent grave ou "backtick") :
+
+          const maChaîne = `une chaîne de caractères à la mode ES6`;
+
+        Quel intérêt ? Les littéraux de gabarits permettent d'interpoler des
+        valeurs calculées à l'intérieur des caractères `${}`, sans recourir à
+        la concaténation comme pour des chaînes classiques. Voyez plutôt :
+
+        ES6
+          ------------------------------------------------------------
+          const nom = "Alfred";
+          const taille = "petit";
+          const élément = "du feu";
+          const texte = `${nom} est un ${taille} dragon qui crache ${élément}.`;
+
+          console.log(texte); // "Alfred est un petit dragon qui crache du feu."
+          ------------------------------------------------------------
+
+        ES5
+          ------------------------------------------------------------
+          var nom = "Alfred";
+          var taille = "petit";
+          var élément = "du feu";
+          var texte = nom + " est un " + taille + " dragon qui crache " + élément + ".";
+
+          console.log(texte); // "Alfred est un petit dragon qui crache du feu."
+          ------------------------------------------------------------
+      */
+
+        /*
+          1. Écrivez une fonction `cluedo` qui prend en argument un nom de
+          suspect, une pièce et une arme, et qui renvoie en sortie une chaîne de
+          caractères formant une accusation de la forme :
+
+            "C'est le colonel Moutarde qui a tué le Docteur Lenoir dans la cuisine
+            avec le chandelier";
+
+          2. Créez un tableau de noms de suspects, un tableau d'armes et un
+          tableau de pièces. En vous aidant de la méthode `Math.random()` écrivez
+          une fonction qui renvoie un nombre entier compris entre 0 et N, où N est
+          un entier positif qui sera fourni en argument à la fonction.
+
+          3. En vous servant de la fonction de nombres entiers aléatoires
+          précédente, modifiez la fonction cluedo afin qu'elle renvoie des
+          accusations aléatoires en combinant les 3 tableaux précédents.
+        */
+
+        let cluedo = function () {
+            return `C'est ${suspect} qui a tué le Docteur Lenoir dans ${place} avec ${weapon}.`;
+        };
+
+        let suspects = ["Bob", "Billy", "Barbara", "Kate"];
+        let places = ["la buanderie", "les toilettes", "le garage", "le jacuzzi", "la chambre"];
+        let weapons = ["un pic à glace", "une cuillère", "un parapluie", "une corde à linge"];
+
+        let randomNumber = function (N) {
+            return (Math.floor((N) * Math.random()));
+        }
+
+        let suspect = suspects[randomNumber(suspects.length)];
+        let place = places[randomNumber(places.length)];
+        let weapon = weapons[randomNumber(weapons.length)];
+        console.log(cluedo());
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>

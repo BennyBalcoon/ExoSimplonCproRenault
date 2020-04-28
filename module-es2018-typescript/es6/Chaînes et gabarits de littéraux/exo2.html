@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Chaînes et littéraux de gabarits (template strings)</title>
+</head>
+
+<body>
+    <script>
+        /*********************************
+      ********** PRÉSENTATION **********
+      **********************************
+        Il est possible d'interpoler autre chose que des variables dans les
+        littéraux de gabarits. Toute valeur calculée peut être interpolée,
+        notamment :
+        - une propriété d'un objet
+        - le résultat d'un calcul
+        - le résultat de l'appel d'une fonction ou d'une méthode d'un objet
+        - le résultat de l'évaluation d'une condition logique (&& ||)
+        - le résultat de l'évaluation d'une condition ternaire (a ? b : c)
+        - un autre littéral de gabarit (littéraux imbriqués)
+
+        ES6+ :
+        /--------------------------------------------------------
+          // calcul
+          const circonference = r =>
+          `La circonférence d'un cercle de rayon ${r} vaut ${2 * Math.PI * r}`;
+
+          // expression ternaire
+          const pileOuFace = () =>
+          `Vous avez tiré ${Math.random() >= 0.5 ? "pile" : "face"}`;
+
+          // propriété et méthode d'objet
+          const lien = membre =>
+          `<a href="${membre.url()}">${membre.nom}</a>`;
+
+          // littéral imbriqué
+          const titre = membre => `<h1>Bienvenue ${lien(membre)} !</h1>`;
+
+          // imbrication avancée
+          const lis = membres => membres.map(
+            membre => `<li>${lien(membre)}</li>`
+          ).join("");
+        --------------------------------------------------------/
+      */
+
+        /*********************************
+        ************ EXERCICE ************
+        **********************************
+          On dispose d'un tableau de voitures (à déclarer) et l'on souhaite afficher dans la page 
+          le balisage suivant :
+
+          Cas 1 : pas de voiture
+            <div>
+              <h2>Votre garage est vide !</h2>
+            </div>
+
+          cas 2 : une seule voiture
+            <div>
+              <h2>Votre garage contient 1 voiture</h2>
+              <ul>
+                <li>Voiture 1</li>
+              </ul>
+            </div>
+
+          Cas 2 : plusieurs voitures
+            <div>
+              <h2>Votre garage contient N voitures</h2>
+              <ul>
+                <li>Voiture 1</li>
+                <li>Voiture 2</li>
+                <li>...</li>
+                <li>Voiture N</li>
+              </ul>
+            </div>
+        */
+
+        /*
+          1. Déclarez une première fonction (fléchée) qui prend en argument un tableau de voitures 
+          et renvoie un littéral de gabarit décrivant le balisage pour un titre H2. Le titre 
+          affichera soit :
+          - "Votre garage est vide !"
+          - "Votre garage contient 1 voiture"
+          - "Votre garage contient N voitures"
+        */
+
+        /*
+          2. Déclarez une deuxième fonction (fléchée) qui prend en argument un tableau de voitures et 
+          renvoie un littéral de gabarit décrivant le balisage pour une liste UL contenant chacune des 
+          voitures dans un LI.
+          
+          Pour cette fonction vous utiliserez la méthode .map() afin d'encadrer chaque valeur du tableau 
+          dans des balises <li> et </li> puis la méthode .join() pour concaténer les LI en une seule 
+          chaîne de caractères (il est également possible d'utiliser la méthode .reduce() seule, au choix).
+        */
+
+        /*
+          3. Déclarez une troisième fonction (fléchée) qui prend en argument un tableau de voitures 
+          et renvoie cette fois un littéral de gabarit décrivant une DIV dans laquelle vous afficherez 
+          le titre H2 suivi de la liste UL, SI ET SEULEMENT SI le tableau de voitures est non vide. 
+          Vous devrez donc interpoler les appels aux deux fonctions déclarées précédemment.
+        */
+
+        /*
+          4. Testez la troisième fonction en insérant dans la page le balisage pour un tableau de 
+          voitures non vide, puis pour un tableau vide.
+        */
+
+        let carArray = ["Twingo", "Zoe", "Clio"];
+
+        let fonction1 = carArray => {
+            if (carArray.length == 1) return `<h2>Votre garage contient ${carArray.length} voiture</h2>`
+            else if (carArray.length == 0) return `<h2>Votre garage est vide!</h2>`
+            else return `<h2>Votre garage contient ${carArray.length} voitures</h2>`
+        }
+
+        console.log(fonction1(carArray));
+
+        /*
+          2. Déclarez une deuxième fonction (fléchée) qui prend en argument un tableau de voitures et 
+          renvoie un littéral de gabarit décrivant le balisage pour une liste UL contenant chacune des 
+          voitures dans un LI.
+          
+          Pour cette fonction vous utiliserez la méthode .map() afin d'encadrer chaque valeur du tableau 
+          dans des balises <li> et </li> puis la méthode .join() pour concaténer les LI en une seule 
+          chaîne de caractères (il est également possible d'utiliser la méthode .reduce() seule, au choix).
+        */
+
+        let fonction2 = carArray =>
+            carArray.map((e, index) => {
+                return `<li>Voiture ${index+1}</li>`
+            }).join("");
+
+        console.log(fonction2(carArray))
+
+        /*
+          3. Déclarez une troisième fonction (fléchée) qui prend en argument un tableau de voitures 
+          et renvoie cette fois un littéral de gabarit décrivant une DIV dans laquelle vous afficherez 
+          le titre H2 suivi de la liste UL, SI ET SEULEMENT SI le tableau de voitures est non vide. 
+          Vous devrez donc interpoler les appels aux deux fonctions déclarées précédemment.
+        */
+
+        let fonction3 = carArray => {
+            if (carArray.length > 0) {
+                return `<div>
+            ${fonction1(carArray)}
+            <ul>${fonction2(carArray)}</ul>
+            </div>`
+            } else {
+                return `<div>${fonction1(carArray)}</div>`
+            }
+        }
+
+        console.log(fonction3(carArray));
+
+        document.write(fonction3(carArray))
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>
