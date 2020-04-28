@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Améliorations d'objets</title>
+</head>
+
+<body>
+    <script>
+        /*
+        NOUVEAU !
+        ES6 introduit une nouvelle syntaxe raccourcie pour déclarer les noms des
+        propriétés et de méthodes des objets littéraux à partir de variables et
+        de fonctions de même nom, ainsi que la possibilité de définir des
+        propriétés dont le nom est calculé ou ne constitue pas un identifiant
+        valide (ex : "99francs").
+
+        ES6
+          const a = 1;
+          const b = 2;
+          const c = function() {};
+          const nomDePropriete = "L'ECMAScript c'est bien";
+
+          const unObjet = {
+            a, // unObjet.a === 1
+            b, // unObjet.b === 2
+            c, // unObjet.c === function() { console.log("hello world"); }
+            d() {
+              console.log("unObjet.d est une fonction");
+            },
+            [nomDePropriete]: 42,
+            ["99francs"]: "disponible"
+          };
+
+        ES5
+          var a = 1;
+          var b = 2;
+          var c = function() { console.log("hello world"); };
+          var nomDePropriete = "L'ECMAScript c'est bien";
+
+          var unObjet = {
+            a: a,
+            b: b,
+            c: c,
+            d: function() {
+              console.log("unObjet.d est une fonction");
+            }
+          };
+          unObjet[nomDePropriete] = 42;
+          unObjet["99francs"] = "disponible";
+      */
+
+        /*
+          1. Réécrire le code suivant ES5 à la façon ES6 en utilisant au maximum
+          la syntaxe de propriétés raccourcies.
+
+          var leRetourDuSchmilblick = {
+            taille: "grand",
+            dimensions: {
+              largeur: 2.5,
+              longueur: 3,
+              hauteur: 0.02
+            },
+            couleurs: [
+              "rouge",
+              "jaune",
+              "or",
+              "bleu"
+            ],
+            peutVoler: false,
+            matiere: "laine",
+            queSuisJe: function(){
+              alert("A votre avis que suis-je ?");
+            }
+          };
+        */
+        let taille = "grand";
+        let dimensions = {
+            largeur: 2.5,
+            longueur: 3,
+            hauteur: 0.02
+        };
+
+        let couleurs = ["rouge", "jaune", "or", "bleu"];
+        let peutVoler = false;
+        let matiere = "laine";
+        let queSuisJe = function () {
+            alert("A votre avis que suis-je ?")
+        }
+
+        const leRetourDuSchmilblick = {
+            taille,
+            dimensions,
+            couleurs,
+            peutVoler,
+            matiere,
+            queSuisJe
+        }
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>

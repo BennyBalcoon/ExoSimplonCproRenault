@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Améliorations d'objets</title>
+</head>
+
+<body>
+    <script>
+        /*
+        NOUVEAU !
+        ES6 introduit une nouvelle méthode `Object.assign(cible, ...sources)`.
+
+        Cette méthode copie successivement les propriétés propres énumérables
+        de chacun des objets source dans l'objet cible (`...sources` signifie
+        qu'il peut y avoir un nombre indéfini d'objets fournis en
+        tant que sources, à ce sujet voir cette page : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Fonctions/param%C3%A8tres_du_reste).
+
+        Si une des propriétés copiées est déjà existante sa valeur est écrasée
+        par la nouvelle valeur en provenance de l'objet source.
+
+        Exemple :
+          const A = { a: 1 };
+          const B = { b: 2, c: 3 };
+          const C = { d: 4, a: 10 };
+          const D = { a: 99 };
+
+          Object.assign(A, B, C);
+          console.log(A); // { a: 10, b: 2, c: 3, d: 4 }
+
+          Object.assign(A, D);
+          console.log(A); // { a: 99, b: 2, c: 3, d: 4 }
+      */
+
+        /*
+          1. Créez un objet représentant une DeLorean. Une DeLorean possède un
+          nom de modèle ("DeLorean DMC-12"), un nombre de roues (4), un look
+          ("rétro-futuriste"), des options (["portes papillon",
+          "caisse en fibre de verre"]).
+
+          2. Créez un second objet dont le prototype sera la DeLorean que vous
+          venez de construire.
+
+          3. Créez un troisième objet représentant une DeLorean volante pouvant
+          voyager dans le temps (ces deux propriétés seront des méthodes de la
+          DeLorean volante).
+        */
+
+        const DeLorean = {
+            model: "DeLorean DMC-12",
+            wheels: 4,
+            look: "rétro-futuriste",
+            options: ["portes papillon",
+                "caisse en fibre de verre"
+            ]
+        }
+
+        const prototypeDeLorean = Object.create(DeLorean);
+        console.log(prototypeDeLorean);
+
+        const flyingDeLorean = Object.assign(({
+            fly() {
+                console.log("I believe I can fly");
+            },
+            timeTravel() {
+                console.log("TimeCop");
+            },
+        }), DeLorean);
+
+        console.log(flyingDeLorean);
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>

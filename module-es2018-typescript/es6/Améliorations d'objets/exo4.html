@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Améliorations d'objets</title>
+  </head>
+
+  <body>
+    <script>
+      /*
+        NOUVEAU !
+        ES6 introduit une nouvelle fonction `Object.is(valeur1, valeur2)`.
+
+        Cette méthode permet de comparer l'égalité stricte de 2 valeurs en
+        renvoyant la même réponse que l'opérateur `===` sauf dans les cas
+        suivants :
+
+          // Comparaison de NaN
+          Object.is(NaN, NaN); // true
+          NaN === NaN; // false
+
+          // Comparaison de 0 et -0
+          Object.is(0, -0); // false
+          0 === -0; // true
+
+        RAPPEL :
+          Number.POSITIVE_INFINITY; // Infinity
+          Number.NEGATIVE_INFINITY; // -Infinity
+          Number.NEGATIVE_INFINITY === -Number.POSITIVE_INFINITY; // true
+          1 / Infinity;     // 0
+          1 / (-Infinity);  // -0
+          0 === -0;         // true
+      */
+
+      /*
+      Imaginons un ressort fictif qui puisse être contracté à une longueur de
+      0cm. Pour savoir dans quelle direction le ressort se détendra une fois à
+      0cm il convient de connaître sa direction de contraction initiale.
+
+                      0
+      - --------------|----------------> +
+
+                      |-/\/\/\/\/\/\-    ressort étiré au maximum
+                      |-/\/\-
+                      |                  ressort contracté à +0
+                      |                  ressort contracté à -0 !
+                -/\/\-|
+        -/\/\/\/\/\/\-|                  ressort étiré dans l'autre sens
+
+      Pour contracter un ressort de moitié, on divise sa longueur par 2.
+      De même, pour contracter un ressort à +0 ou -0 de longueur, nous allons
+      diviser sa longueur par +Infinity et l'information du sens de contraction
+      sera conservée dans le signe.
+
+      1. Écrire un objet ressort contenant une propriété longueur non nulle et
+      une méthode contracter(). La méthode contracter prend en argument un
+      nombre qui divisera la longueur du ressort.
+
+      2. Contracter le ressort à +0 (ou -0 selon la longueur que vous avez
+      fournie au ressort au départ).
+
+      3. Ajouter une méthode decontracter() au ressort qui prend en argument
+      une longueur positive. La longueur du ressort devra passer de +0 ou -0
+      à la longueur fournie dans la direction de contraction initiale du
+      ressort.
+
+      4. Décontracter le ressort à 10 de longueur en valeur absolue. Le
+      ressort aura donc pour longueur finale +10 ou -10. Vérifiez que le sens
+      de contraction initial a bien été conservé.
+    */
+
+      const ressort = {
+        longueur: 5,
+        contracter(number) {
+          return (this.longueur = this.longueur / number);
+        },
+        decontracter(number) {
+          number = Math.abs(number);
+          if (Object.is(this.longueur, 0)) {
+            return number;
+          }
+          if (Object.is(this.longueur, -0)) {
+            return -number;
+          }
+        },
+      };
+
+      console.log(ressort.contracter(Infinity));
+      console.log(ressort);
+      console.log(ressort.decontracter(-9));
+    </script>
+    <noscript>
+      <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+  </body>
+</html>

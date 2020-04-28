@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Améliorations d'objets</title>
+</head>
+
+<body>
+  <script>
+    /*
+        RAPPEL :
+        Jusqu'à ES5 on disposait des options suivantes pour parcourir les
+        propriétés d'un objet :
+
+          for...in
+            qui parcourt toutes les propriétés énumérables de l'objet et de sa
+            chaîne de prototype.
+
+          Object.keys(obj)
+            qui renvoie un tableau des clés des propriétés propres énumérables
+            de l'objet fourni.
+
+        NOUVEAU !
+        ES6 introduit 2 nouvelles méthodes sur l'objet `Object` :
+
+          Object.entries(obj)
+            qui renvoie un tableau de paires [clé, valeur] des propriétés
+            propres énumérables de l'objet fourni.
+
+          Object.values(obj)
+            qui renvoie un tableau des valeurs des propriétés propres
+            énumérables de l'objet fourni.
+
+        Exemple :
+          const obj = Object.assign(
+            Object.create({ // objet contenant le prototype
+              d: 42
+            }),
+            { // objet contenant les propriétés propres
+              a: 1,
+              b: 2,
+              c: 3
+            }
+          );
+          console.log(Object.values(obj)); // [1, 2, 3]
+          console.log(Object.entries(obj)); // [["a", 1], ["b", 2], ["c", 3]]
+      */
+
+    /*
+        1. Créez un objet qui représente une classe (d'élèves). Cet objet
+        est vide. Nous le renseignerons plus tard.
+
+        2. Créez un objet qui représente une classe spécialisée à partir de
+        l'objet précédent qui fera donc office de prototype
+        ( pensez à utilisez Object.create() ).
+
+        3. La classe spécialisée contient 16 propriétés. Chaque propriété est
+        le nom de l'élève et a pour valeur son numéro de sécurité sociale.
+
+        4. Ajoutez 2 méthodes dans le prototype de la classe spécialisée. La
+        classe (d'élèves) contient donc 2 méthodes :
+        - La première, si elle est exécutée, affiche successivement, dans la
+        console, la liste des numéros de sécurité sociale de chaque élève de
+        la classe.
+        - La deuxième, si elle est exécutée, affiche, dans la console, pour
+        chaque élève de la classe : "Je m'appelle X et mon numéro de sécurité
+        sociale est : Y" (ou X est le nom de l'élève et Y son numéro de
+        sécurité sociale).
+
+        N.B : Pensez à utiliser le mot-clé this pour faire référence à l'objet
+        dans lequel les méthodes sont exécutées.
+    */
+
+    const schoolClass = {};
+    const specialClass = Object.create(schoolClass);
+    Object.assign(specialClass, {
+      "Bob": 1,
+      "Linda": 2,
+      "John": 3,
+      "Kelly": 4
+    });
+    console.log(specialClass);
+
+    const list = function () {
+      console.log(Object.values(specialClass));
+    }
+
+    const describe = function () {
+      for (const key in specialClass) {
+        if (specialClass.hasOwnProperty(key)) {
+          const value = specialClass[key];
+          console.log("je suis " + key + " et mon n° de sécu est " + value);
+        }
+      }
+    }
+
+    const simplon = Object.assign(Object.create({
+      list,
+      describe
+    }), specialClass)
+
+    console.log(simplon);
+
+    simplon.list();
+    simplon.describe();
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+
+</html>
