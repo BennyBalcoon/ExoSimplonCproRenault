@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 4</title>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+
+            const countrySelection = window.document.createElement("select");
+            let regionSelection = window.document.createElement("select");
+            let citySelection = window.document.createElement("select");
+
+            const defaultOption = document.createElement('option');
+            defaultOption.text = "Select";
+
+            const getCountries = fetch("http://localhost:8080/country", {
+                method: "GET"
+            });
+            console.log(getCountries);
+
+            getCountries
+                .then((response) => {
+                    return response.json()
+                })
+                .then((countries) => {
+                    console.log(countries);
+                    countrySelection.add(defaultOption);
+                    for (let i = 0; i < countries.length; i++) {
+                        countrySelection.innerHTML = countrySelection.innerHTML +
+                            '<option value="' + countries[i]['id'] + '">' + countries[i][
+                                'name'
+                            ] +
+                            '</option>';
+                    }
+                    document.body.appendChild(countrySelection);
+                })
+
+            countrySelection.addEventListener("change", function () {
+                if (window.document.getElementById("region-select")) {
+                    const regionToRemove = window.document.getElementById("region-select");
+                    console.log(regionToRemove);
+                    regionToRemove.parentNode.removeChild(regionToRemove);
+                }
+                if (window.document.getElementById("city-select")) {
+                    const cityToRemove = window.document.getElementById("city-select");
+                    cityToRemove.parentNode.removeChild(cityToRemove);
+                }
+                regionSelection = window.document.createElement("select");
+                regionSelection.id = "region-select";
+                let countryId = countrySelection.options[countrySelection.selectedIndex]
+                    .value;
+
+                const getRegions = fetch(`http://localhost:8080/country/${countryId}/region`, {
+                    method: "GET"
+                })
+                console.log(getRegions);
+                getRegions
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((regions) => {
+                        console.log(regions);
+                        regionSelection.add(defaultOption);
+                        for (let i = 0; i < regions.length; i++) {
+                            regionSelection.innerHTML = regionSelection.innerHTML +
+                                '<option value="' + regions[i]['id'] + '">' + regions[i][
+                                    'name'
+                                ] +
+                                '</option>';
+                        }
+                        document.body.appendChild(regionSelection);
+                    })
+
+                regionSelection.addEventListener("change", function () {
+
+                    if (window.document.getElementById("city-select")) {
+                        const cityToRemove = window.document.getElementById("city-select");
+                        cityToRemove.parentNode.removeChild(cityToRemove);
+                    }
+
+                    citySelection = window.document.createElement("select");
+                    citySelection.id = "city-select";
+
+                    let regionId = regionSelection.options[regionSelection.selectedIndex]
+                        .value;
+                    const getCities = fetch(
+                        `http://localhost:8080/country/region/${regionId}/city`, {
+                            method: "GET"
+                        })
+                    getCities
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(cities => {
+                            citySelection.add(defaultOption);
+                            for (let i = 0; i < cities.length; i++) {
+                                citySelection.innerHTML = citySelection.innerHTML +
+                                    '<option value="' + cities[i]['id'] + '">' + cities[i][
+                                        'name'
+                                    ] +
+                                    '</option>';
+                            }
+                            document.body.appendChild(citySelection);
+                        })
+
+                })
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
