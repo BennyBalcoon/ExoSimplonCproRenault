@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+        .card {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        /* On mouse-over, add a deeper shadow */
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add some padding inside the card container */
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+    <title>Chaînes et littéraux de gabarits (template strings)</title>
+</head>
+
+<body>
+    <!-- card -->
+    <div class="card">
+        <img src="img_avatar.png" alt="Avatar" style="width:100%" />
+        <div class="container">
+            <h4><b>Jean Dupont</b></h4>
+            <p>Architect & Engineer</p>
+        </div>
+    </div>
+
+    <script>
+        /*********************************
+      ********** PRÉSENTATION **********
+      **********************************
+        NOUVEAU !
+        Les littéraux de gabarits en ES6 ont également la propriété intéressante
+        de conserver les sauts de lignes, ce que ne font pas les chaînes de
+        caractères classiques qui nécessitent l'insertion explicite du caractère
+        de saut de ligne "\n".
+
+        ATTENTION : Les sauts de ligne ainsi que tous les espaces sont conservés, y compris l'indentation en début de ligne dans votre code (nous verrons une méthode à l'exercice suivant pour se débarrasser des espaces superflus).
+
+        ES6+ :
+        /--------------------------------------------------------
+          // Noter l'indentation : chaque ligne est alignée tout à gauche.
+          // Autrement des espaces seraient insérés en début de ligne.
+          const texte = `Un texte sur
+          plusieurs lignes
+          dans un littéral
+          de gabarit.`
+        --------------------------------------------------------/
+
+        ES5 :
+        /--------------------------------------------------------
+          var texte = "Un texte sur \n" +
+            "plusieurs lignes \n" +
+            "dans une chaîne \n" +
+            "classique."
+        --------------------------------------------------------/
+      */
+
+        /*********************************
+        ************ EXERCICE ************
+        **********************************
+          1. Écrivez une fonction qui prend en argument une URL d'image, un titre et une description 
+          et insère une carte (card) dans la page sur le modèle de celle déjà présente. Le balisage 
+          inséré devra respecter la même indentation qu'actuellement.
+
+          2. Créez un tableau de 10 personnes et insérez dans la page 10 cartes correspondant à 
+          chacune d'entre elles.
+        */
+
+        let cardMaker = (url, title, description) => {
+            return `<div class="card">\n
+                    <img src="${url}" alt="Avatar" style="width:100%" />\n
+                    <div class="container">\n
+                    <h4><b>${title}</b></h4>\n
+                    <p>${description}</p>\n
+                    </div>\n
+                    </div>`
+        }
+
+        let Bob = cardMaker("img_avatar.png",
+            "tete de gland", "costard cravate");
+        document.write(Bob)
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>

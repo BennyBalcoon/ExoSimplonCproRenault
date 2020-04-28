@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Chaînes et littéraux de gabarits (template strings)</title>
+</head>
+
+<body>
+  <script>
+    /*********************************
+      ********** PRÉSENTATION **********
+      **********************************
+        NOUVEAU !
+        Il est aussi possible de préfixer un littéral de gabarit avec le nom d'une fonction 
+        déclarée préalablement. On appelle cela un littéral de gabarit étiqueté.
+
+        La fonction en question recevra en arguments :
+        - un tableau de toutes les portions de chaîne non interpolées
+        - une suite d'arguments correspondant à chacune des valeurs interpolées, dans l'ordre 
+        d'apparition dans le littéral de gabarit.
+
+        ES6+ :
+        /--------------------------------------------------------
+          function parlerFort(
+            chaines, // tableau
+            expressionHeure, // chaîne
+            expressionActivite // chaîne
+          ) {
+            const str0 = chaines[0]; // "Il est "
+            const str1 = chaines[1]; // " ! C'est l'heure de "
+            const str2 = chaines[2]; // " !"
+
+            return `${str0}${expressionHeure.toUpperCase()}${str1}${expressionActivite.toUpperCase()}${str2}`;
+          }
+
+          const heure = "midi";
+          const activite = "manger de la choucroute";
+          const texte = parlerFort`Il est ${heure} ! C'est l'heure de ${activite} !`; // "Il est MIDI ! C'est l'heure de MANGER DE LA CHOUCROUTE !"
+        --------------------------------------------------------/
+      */
+
+    /*********************************
+    ************ EXERCICE ************
+    **********************************
+      Dans le même style que dedent (https://www.npmjs.com/package/dedent), vous allez écrire 
+      une fonction étiquette de littéraux de gabarit qui aura pour fonction de retirer 
+      l'indentation superflue apparaissant dans les littéraux sur plusieurs lignes.
+
+      Cette fonction respectera les règles suivantes :
+      1. Les lignes vides (ou ne contenant que des espaces) en début et fin de littéral 
+      sont retirées.
+      2. On détermine la ligne non vide avec le nombre (> 0) minimal d'espaces en tête.
+      3. Pour chaque ligne non vide on retire le nombre d'espaces en tête déterminé 
+      précédemment, sans toucher aux lignes sans espaces en tête.
+
+      Exemples :
+        // On retire toutes les indentations de chaque ligne.
+        const texte = `Un texte tellement long qu'il a besoin d'être 
+                       réparti sur plusieurs lignes. L'indentation à gauche  
+                       sera entièrement retirée par la fonction étiquette 
+                       du littéral de gabarit.`
+
+        // On retire la première et la dernière ligne.
+        // On désindente du nombre d'espaces initiaux de la deuxième ligne.
+        const espacesEnTrop = `
+          <ul>
+            <li>
+              Premier
+            </li>
+
+            <li>
+              Second
+            </li>
+          </ul>
+        `;
+    */
+  </script>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+
+</html>
