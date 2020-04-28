@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front Ajax</title>
+</head>
+
+<body>
+    <h1>Requête GET Asynchrone</h1>
+    <p>Choisissez une adresse :</p>
+    <select>
+        <option value="-">-- Pas d'adresse selectionnée --</option>
+        <option value="1">Adresse 1</option>
+        <option value="2">Adresse 2</option>
+        <!-- <option value="2">Adresse 3</option> -->
+    </select>
+    <div id="selectedAddress"></div>
+    <h1>Requête POST Asynchrone</h1>
+    <form>
+        <p>Street : <input type="text" name="street" /></p>
+        <p>City : <input type="text" name="city" /></p>
+        <p>ZipCode : <input type="number" name="zipcode" /></p>
+        <p>Country : <input type="text" name="country" /></p>
+        
+        <p><input type="submit" value="Enregistrer" /></p>
+    </form>
+    
+    <script src="script_fetch.js"></script>
+</body>
+
+</html>
