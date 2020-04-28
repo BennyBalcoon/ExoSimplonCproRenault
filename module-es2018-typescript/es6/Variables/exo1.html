@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Variables</title>
+</head>
+
+<body>
+    <script>
+        /*
+      RAPPEL:
+      Le mot-clé `var` est utilisé pour déclarer des variables à portée de
+      FONCTION. Deux cas de figurent se présentent :
+        - la variable est dite LOCALE si elle déclarée à l'intérieur d'une
+          fonction, auquel cas elle sera accessible partout à l'intérieur de
+          cette fonction. Tenter d'accéder à cette variable en dehors de sa
+          fonction déclenchera une erreur de type `ReferenceError`.
+        - la variable est dite GLOBALE si elle est déclarée en dehors de toute
+          fonction, auquel cas elle deviendra une propriété de l'objet global
+          `window` et sera accessible partout.
+
+      Exemple de variables à portée de fonction :
+        ------------------------------------------------------------
+        var x = 10; // variable globale
+        function changer() {
+          var x = 5; // ici, la variable x est locale à la fonction
+          var y = 2; // idem pour y
+          console.log(x); // 5
+          console.log(y); // 2
+        }
+        changer();
+        console.log(x); // 10
+        console.log(y); // ReferenceError
+        ------------------------------------------------------------
+
+      NOUVEAU !
+      Contrairement à `var`, les mots-clés `let` et `const` servent à déclarer
+      des variables à portée de BLOC.
+
+      Cela signifie qu'une variable déclarée avec `let` ou `const` :
+        - dans une boucle for, for...in, while, do...while, etc.
+        - dans un bloc de condition if...else
+        - dans un bloc try...catch
+        - dans un bloc étiqueté étiquette{ ... }
+      ne sera accessible QU'À L'INTÉRIEUR DE CE BLOC.
+
+      Toute variable déclarée avec `let` ou `const` ne PEUT PLUS être redéclarée.
+
+      Une variable déclarée avec `const` ne peut plus être réassignée et doit
+      être initialisée dès sa déclaration.
+
+      Toute tentative d'accès à une variable de portée de bloc en dehors de son
+      bloc de déclaration déclenchera une erreur de type `ReferenceError`.
+
+      NOTE : Dans du code ES6, on privilégiera TOUJOURS de déclarer nos
+      variables avec une portée de BLOC (avec `let` et `const`), et autant que
+      possible avec le mot-clé `const` lorsqu'une variable n'a pas besoin d'être
+      réassignée. On s'assurera ainsi que nos variables ne sont accessibles qu'à
+      l'intérieur de leur bloc de déclaration et on minimisera les risques
+      d'effets indésirables.
+      */
+
+        /*
+          Transformer le code suivant pour utiliser les mots-clés `let` et `const`
+          à la place de `var`.
+          Choisissez de déclarer vos variables constantes quand c'est possible
+          dans chaque cas de figure.
+        */
+
+        (function () {
+            // var foo = "foo";
+            let foo = "foo";
+            foo = "bar";
+            console.log(foo);
+        })()
+
+        //
+        (function () {
+            // var messageDeFin;
+            let messageDeFin;
+            // var choixDifficile = prompt("Voulez-vous ");
+            const choixDifficile = prompt("Voulez-vous ");
+        })()
+
+        //
+        (function () {
+            // var objet = {
+            //     name: "toto"
+            // };
+            const objet = {
+                name: "toto"
+            };
+            objet.test = 123;
+        })()
+
+        //
+        (function () {
+            let stuff;
+            stuff = "enfin fini !";
+        })()
+
+        //
+        (function () {
+            function doStuff() {
+                const stuff = "BAM!";
+                console.log(stuff);
+            }
+        })()
+
+        /*
+          Corrigez les codes suivants.
+        */
+
+        let GRAVITY_ACCELERATION = 9.81;
+
+        function reverseGravity() {
+            GRAVITY_ACCELERATION = -GRAVITY_ACCELERATION;
+            console.log(GRAVITY_ACCELERATION);
+        }
+
+        reverseGravity();
+    </script>
+    <noscript>
+        <p>VirtuoWorks® - tous droits réservés©</p>
+    </noscript>
+</body>
+
+</html>
