@@ -1,3 +1,5 @@
+// PARTIE 1
+
 // import {Observable} from 'rxjs';
 
 // window.addEventListener("DOMContentLoaded", (event) => {
@@ -33,6 +35,8 @@
 //       }
 //    });
 // })
+
+// PARTIE 2
 
 import { Subject } from 'rxjs';
 
