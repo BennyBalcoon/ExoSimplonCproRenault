@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>TypeScript : Exercice 15</title>
+    <!---------------------------------
+    -----------PRÉSENTATION-----------
+    ----------------------------------
+
+    Le sucre syntaxique 'class' offre une syntaxe alternative aux fonctions
+    constructeur et au design pattern constructeur. A l'aide de sa notation
+    simplifiée, 'class' facilite les bonnes pratiques suivantes :
+    - propriétés liées aux instances.
+    - méthodes liées au prototype.
+
+    De la même façon le sucre syntaxique 'extends' offre une syntaxe alternative
+    au design pattern sub-class. Il introduit une notation simplifiée pour
+    déclarer une fonction constructeur (i.e. 'class') dont :
+    - les propriétés sont ses propriétés ET les propriétés d'une autre fonction
+    constructeur;
+    - les méthodes sont celle du prototype de la fonction constructeur ET le
+    prototype de ce prototype a les méthodes du prototype d'une autre fonction
+    constructeur
+
+    Schématiquement, le mot clé 'extends' permet de créer des objets dont la
+    structure pourrait se décrire comme suit :
+     __________________     ________________     ________________
+    | Constructeur A   |   | Prototype de A |   | Prototype de B |
+    | Propriétés A + B |<==|  Méthodes de A |<==|  Méthodes de B |
+    |__________________|   |________________|   |________________|
+
+    En programmation orienté objet, on dit qu'une classe "hérite" d'une autre
+    classe. En TypeScript, les classes peuvent hériter de classes et par
+    extension, les interfaces peuvent hériter d'autres interfaces (toujours à
+    l'aide du mot-clef 'extends').
+
+    Par exemple :
+
+    ===code_ts===============================================
+    {
+      interface AnimalInterface {
+        nom: string;
+        bouge: (distanceEnMetres?: number) => void;
+      }
+
+      class Animal implements AnimalInterface {
+        nom: string;
+
+        constructor (leNom: string) {
+          this.nom = leNom;
+        }
+
+        bouge(distanceEnMetres: number = 0) {
+          console.log(`L'animal bouge de ${distanceEnMetres}m.`);
+        }
+      }
+
+      interface ChienInterface extends AnimalInterface {
+        caracteristique: string;
+        aboiement: () => void;
+      }
+
+      class Chien extends Animal implements ChienInterface {
+        caracteristique: string;
+
+        constructor (leNom: string) {
+          super(leNom);
+          this.caracteristique = 'Pelage';
+        }
+
+        aboiement() {
+          console.log('Ouaf! Ouaf!');
+        }
+      }
+
+      const chien: Chien = new Chien('Médor');
+      chien.bouge(10);
+      chien.aboiement();
+    }
+    =========================================================
+
+    La fonction/mot-clé "magique" super() est le sucre syntaxique qui permet
+    d'exécuter le contructeur parent sur l'instance du constructeur enfant.
+
+    Lorsqu'une classe "hérite" d'une autre classe, l'appelle à la fonction
+    super() est OBLIGATOIRE dans le constructeur.
+
+    ----------------------------------
+    -------------EXERCICE-------------
+    ----------------------------------
+    -- 1 --
+          -------
+      - Reprenez le code de l'exercice précédent.Créez une nouvelle classe
+      enfant qui permet de créer un rectangle possédant, en plus des dimensions
+      et de la position, une couleur de fond ;
+      - S'il n'y a pas de couleur de fond fournie, fixez une couleur de fond à
+      l'aide d'une valeur par défaut ;
+      - Créez un rectangle avec une couleur de fond et affichez le résultat
+      dans la console.
+
+          -------
+    -- 2 --
+          -------
+      - Ajoutez une méthode à la classe enfant qui permet de modifier la
+      position en appelant la méthode du parent et, en même temps, de modifier
+      la couleur de fond en modifiant directement la propriété propre.
+      - Utilisez cette méthode et affichez le résultat dans la console.
+    -->
+</head>
+<body>
+  <h1>TypeScript : Exercice 15</h1>
+  <p>Un paragraphe</p>
+  <noscript>
+    <p>VirtuoWorks® - tous droits réservés©</p>
+  </noscript>
+</body>
+</html>
