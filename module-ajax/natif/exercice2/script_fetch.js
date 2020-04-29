@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', function() {
     const selectedValue = this.options[this.options.selectedIndex].value;
     if (!isNaN(selectedValue)) {
       const promise = fetch(
-        `http://localhost:8082/addresses/id=${selectedValue}`,
+        `http://localhost:8082/addresses/${selectedValue}`,
         {
           method: 'GET',
         }

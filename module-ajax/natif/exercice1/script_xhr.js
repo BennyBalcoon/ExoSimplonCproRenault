@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log(selectedValue);
     if (!isNaN(selectedValue)) {
       const xhr = new XMLHttpRequest();
-      const url = `http://localhost:8082/addresses/id=${selectedValue}`;
+      const url = `http://localhost:8082/addresses/${selectedValue}`;
       xhr.open('GET', url);
       xhr.addEventListener('load', function() {
         if (200 === xhr.status) {
