@@ -15,34 +15,32 @@ class Robot {
 }
 
 let protoRobot = new Robot(Math.floor(Math.random() * 10));
-console.log(protoRobot);
-console.log(protoRobot.id % 2 === 0);
+
+const colorTeam1 = iif(
+    () => protoRobot.id % 2 === 0,
+    Observable.create(function(subs){
+          subs.next(protoRobot.equipeBleue());
+    }),
+    Observable.create(function(subs){
+          subs.next(protoRobot.equipeRouge());
+    })
+)
+colorTeam1.subscribe((value) => {
+    console.log(value);
+})
+
+// OU
 
 const blue = protoRobot.equipeBleue();
 const red = protoRobot.equipeRouge();
 
-// Avec IF ELSE
-
-// const obs = new Observable(observer => {
-//     if(protoRobot.id % 2 === 0) {
-//         observer.next(protoRobot.equipeBleue());
-//     } else {
-//         observer.next(protoRobot.equipeRouge());
-//     }
-// })
-
-// obs.subscribe((value) => {
-//     console.log(value)
-// });
-
-
-const colorTeam = iif(
+const colorTeam2 = iif(
     () => protoRobot.id % 2 === 0,
     of(blue),
     of(red)
 )
 
-colorTeam.subscribe((value) => {
+colorTeam2.subscribe((value) => {
     console.log(value);
 })
 
@@ -56,13 +54,21 @@ obs.pipe(mergeMap(value => iif(() => value%2 === 0, of(blue), of(red))))
 // Partie 2
 
 const source = range(1, 100);
-source.subscribe(() => console.log(new Robot(Math.floor(Math.random() * 10))));
-
-// source.subscribe(() => {
-//     const obs2 = new Observable(observer => observer.next(new Robot(Math.floor(Math.random() * 10))))
-//     obs2.pipe(mergeMap(value => iif(() => value%2 === 0, of(blue), of(red))))
-//     .subscribe(value => console.log(value))
-// });
+source.subscribe(() => {
+    let robots = new Robot(Math.floor(Math.random() * 10));
+    const colorTeam = iif(
+        () => robots.id % 2 === 0,
+        Observable.create(function(subs){
+              subs.next(robots.equipeBleue());
+        }),
+        Observable.create(function(subs){
+              subs.next(robots.equipeRouge());
+        })
+    )
+    colorTeam.subscribe((value) => {
+        console.log("le robot a l'id" + robots.id + " : " + value);
+    })
+});
 
 
 
