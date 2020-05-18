@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        isLeapYear = (year) => {
+            if((year % 4 === 0 && year % 100 !==0) || year % 400 == 0) {
+                console.log(`${year} est une année bissextile`);
+            } else {
+                console.log(`${year} n'est pas une année bissextile`);
+            }
+        }
+
+        isLeapYear(1900);
+        isLeapYear(2000);
+        isLeapYear(1904);
+        isLeapYear(2003);
+
+    </script>
+    
+</body>
+</html>
