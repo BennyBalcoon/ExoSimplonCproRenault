@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        var maFonction = function() {
+            setTimeout(function() {
+                prompt()
+            }, 3000);
+        }
+
+        var maFonctionBis = function() {
+            setInterval(() => {
+                prompt()
+            }, 5000);
+        }
+
+        var switchOn;
+        var maFonctionTer = () => {
+            switchOn = setInterval(() => {
+                console.log("ouille")
+            }, 2000);
+        }
+
+        var maDerniereFonction = () => {
+            clearInterval(switchOn);
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Les marmottes et le chocolat</h1>
+    <p onclick="maFonctionTer()">Les tablettes sont faites par des machines artisanales</p>
+    <p onclick="maDerniereFonction()">Puis la marmotte met le chocolat dans le papier alu</p>
+
+</body>
+
+</html>
