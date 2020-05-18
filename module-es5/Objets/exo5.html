@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        var Robot = function(serie, name, color) {
+            this.serie = serie;
+            this.model = 800;
+            this.name = name;
+            this.color = color;
+            this.material = "metal hurlant";
+            this.garanty = "7 ans";
+        }
+
+        var wallE = new Robot("X", "wall-e", "yellow");
+        var schwarzy = new Robot("t-800", "arnold", "gris");
+        var asimov = new Robot("dyson", "Isaac", "blanc");
+        var eve = new Robot("X", "eve", "blanc");
+        var sam = new Robot("t-2000", "sam", "gris");
+        var willSmith = new Robot("dyson", "Will Smith", "noir");
+
+        var tableauRobots = [wallE, schwarzy, asimov, eve, sam, willSmith];
+
+        var affectation = function() {
+            for(var i = 0; i<tableauRobots.length; i++) {
+                 console.log(tableauRobots[i].model + tableauRobots[i].serie + tableauRobots[i].name);
+            }
+        }
+
+        affectation();
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p>Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
