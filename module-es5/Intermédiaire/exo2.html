@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+       
+       var maPremiereFonction = function() {
+           var message = prompt();
+           alert(parseFloat(message));
+       }
+
+       var maDeuxiemeFonction = function() {
+           var message = prompt();
+           alert(isNaN(parseFloat(message)));
+       }
+
+       var maTroisiemeFonction = function() {
+           var saisie = prompt();
+           if (true === isNaN(parseFloat(saisie))) {
+                alert("Vous devez saisir un nombre");
+           } else {
+               alert("Merci d'avoir saisi un nombre");
+           }
+       }
+    </script>
+</head>
+<body onload="maDeuxiemeFonction()">
+
+    <h1>Les marmottes et le chocolat</h1>
+    <p onclick="maTroisiemeFonction()">Les tablettes sont faites par des machines artisanales</p>
+    <p>Puis la marmotte met le chocolat dans le papier alu</p>
+    
+</body>
+</html>
