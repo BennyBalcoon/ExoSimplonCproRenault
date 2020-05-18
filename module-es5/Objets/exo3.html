@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        // var monObjet = {
+        //     fonctionConcat : function() {
+        //     var concat = 33 + "coups";
+        //     alert(concat);
+        // },
+        //     maFonction : function() {
+        //     var message = prompt("Veuillez saisir un nombre");
+        //     while (true === isNaN(parseFloat(message))) {
+        //         message = prompt("Veuillez saisir un nombre");
+        //     }
+        // },
+        //     maFonction2 : function() {
+        //     setTimeout(function() {
+        //         prompt()
+        //     }, 3000);
+        // },
+        // versGoogle : function(){
+        //     open("https://www.google.fr/", "Google", "location=yes");
+        //     console.log("ouille");
+        // },
+        // maFonctionSaisie : function() {
+        //    var saisie = prompt();
+        //    while("" === saisie || null === saisie || isNaN(saisie === false)) {
+        //        saisie = prompt();
+        //    }
+        //    var lien = "http://www." + saisie + ".com";
+        //    open(lien,"saisie", "status=yes");
+        // }
+        // };
+
+        // monObjet.fonctionConcat();
+        // monObjet.maFonction();
+        // monObjet.maFonction2();
+        // monObjet.maFonctionSaisie();
+        // monObjet.versGoogle();
+
+        var objetLitteral = {
+            centuple : function(n) {
+                if (!isNaN(n)) {
+                    alert(n);
+                    return n*100;
+                }
+                return 0;
+            },
+            concatHello : function(text) {
+                if (isNaN(text)) {
+                    alert(text);
+                    return text + " hello !";
+                }
+                return "error!"
+            },
+            monTableau : function(array) {
+                alert(array[1]);
+                array[1] = array[2];
+                return(array);
+            },
+            monObjet : function(objet) {
+                    objet.d = objet.a+objet.b+objet.c+objet.d+objet.e;
+                    return(objet);
+            }
+        }
+
+        alert(objetLitteral.centuple(5));
+        alert(objetLitteral.concatHello("bobo"));
+
+        var tableauFinal = objetLitteral.monTableau(["john", "paul", "ringo"]);
+        alert(tableauFinal[2]);
+
+        var objetFinal = objetLitteral.monObjet({
+            a: 1,
+            b: 2,
+            c: 3,
+            d: 4,
+            e: 5
+        });
+        alert(objetFinal.d);
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p>Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
