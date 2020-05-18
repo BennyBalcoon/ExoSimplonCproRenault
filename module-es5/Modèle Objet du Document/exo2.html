@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        alert(window.navigator.appName);
+        var ua = navigator.userAgent;
+        alert(ua);
+        if (ua.includes("Chrome")) {
+            alert("Spy on Me!");
+            open("http://www.lequipe.fr",
+                "lequipe",
+                "resizable,scrollbars,status")
+            // console.log("ça marche");
+        } else if (ua.includes("Safari/605.1.15")) {
+            alert("so lame!");
+        } else {
+            alert("free from desire");
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p>Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
