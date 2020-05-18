@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var maFonction = function () {
+           var choice = confirm("Souhaitez-vous ouvrir une fenêtre vers Google ?");
+            if (true === choice) {
+                open("https://www.google.fr/", "Google", "location=yes");
+            } else {
+                saisie = prompt("Veuillez saisir l'URL d'un site alternatif");
+                if (saisie) {
+                    var lien = "http://www." + saisie + ".com";
+                    open(lien, "saisie", "status=yes");
+                } else {
+                    alert("Tant pis !");
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Les marmottes et le chocolat</h1>
+    <p onclick="maFonction()">Les tablettes sont faites par des machines artisanales</p>
+    <p>Puis la marmotte met le chocolat dans le papier alu</p>
+
+</body>
+
+</html>
