@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        var robot = {
+            serie: 5,
+            model: 800,
+            name: "schwarzy",
+            color: "gris",
+            material: "metal",
+            garanty: "7 ans",
+            bonjour: 2,
+            direBonjour() {
+                var nomDuRobot = this.model + this.serie;
+                for (var i = 0; i < this.bonjour; i++) {
+                alert("Bonjour humain ! je m'appelle " + nomDuRobot);
+                }
+                this.bonjour++;
+                console.log(this.bonjour);
+            }
+        }
+
+        robot.direBonjour();
+        robot.direBonjour();
+        robot.direBonjour();
+
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p>Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
