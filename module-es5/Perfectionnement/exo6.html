@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        var maFonction = function() {
+           var saisie = prompt("Quel jour de la semaine es-tu né? 1 pour lundi, 2 pour mardi, etc..")
+           saisie=parseInt(saisie);
+               if (saisie === 1) {
+                   alert("Lundi");
+               } else if (2<= saisie && 4>=saisie) {
+                   console.log("mouille");
+                   alert ("Mardi, mercredi ou jeudi");
+               } else if (saisie === 5) {
+                    alert("vendredi");
+               } else if (6<= saisie && 7>=saisie) {
+                   alert ("le week-end");
+               }
+           }
+        
+    </script>
+</head>
+
+<body onload="maFonction()">
+
+    <h1>Les marmottes et le chocolat</h1>
+    <p onclick="maFonction()">Les tablettes sont faites par des machines artisanales</p>
+    <p>Puis la marmotte met le chocolat dans le papier alu</p>
+
+</body>
+
+</html>
