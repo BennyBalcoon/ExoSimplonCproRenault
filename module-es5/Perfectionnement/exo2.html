@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        // function sum(){
+        //     const arguments = [1, 6, 9];
+        //     const reducer = (acc, currentValue) => acc + currentValue;
+
+        //     alert(arguments.reduce(reducer));
+        // }
+
+        // sum();
+
+        function array(arguments) {
+            var sum = 0;
+            var result = 0;
+
+            for (var i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            result = sum / 2
+            return result;
+        }
+
+        console.log(array([5, 1, 3, 3, 10]));
+    </script>
+</head>
+
+<body>
+
+    <h1>Les marmottes et le chocolat</h1>
+    <p onClick="array()">Les tablettes sont faites par des machines artisanales</p>
+    <p>Puis la marmotte met le chocolat dans le papier alu</p>
+
+</body>
+
+</html>
