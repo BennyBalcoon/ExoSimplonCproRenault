@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        
+        alert(document.title);
+        var maFonction = function() {
+            document.title = "Ceci est un nouveau titre";
+            alert(document.title);
+        }
+
+        var maFonctionBis = function() {
+            if(document.title.includes("Ceci est un nouveau titre")) {
+                document.title = "Encore un nouveau titre";
+                alert(document.title);      
+            } else {
+                alert(document.title);
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <h1 onclick="maFonction()">Hamlet</h1>
+    <p>Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p onclick="maFonctionBis()">Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
