@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var enseignant = {
+            name: "Pfeiffer",
+            prenom: "Michelle",
+            age: 33,
+            presence: true,
+            discipline: "anglais"
+        }
+
+        var classe = {
+            numero: 2,
+            specialite: "relou",
+            enseignant: enseignant,
+            eleves: [eleve, eleve2, eleve3]
+        }
+
+        var eleve = {
+            nom: "bob",
+            prenom: "bobby",
+            age: "15",
+            presence: false
+        }
+
+        var eleve2 = {
+            nom: "maria",
+            prenom: "maria",
+            age: "14",
+            presence: true
+        }
+
+        var eleve3 = {
+            nom: "gomez",
+            prenom: "mario",
+            age: 16,
+            presence: true
+        }
+
+        eleve2.presence = false;
+
+        classe.eleves = [eleve, eleve2, eleve3];
+
+        for (var i = 0; i < classe.eleves.length; i++) {
+            var message = "Je suis " + classe.eleves[i].prenom + " " + classe.eleves[i].nom + " et je suis présent.";
+            console.log(message);
+            alert(message);
+        }
+
+        for (var i = 0; i < classe.eleves.length; i++) {
+            if (classe.eleves[i].presence === true) {
+                var message = "Je suis " + classe.eleves[i].prenom + " " + classe.eleves[i].nom +
+                " et je suis présent.";
+                alert(message);
+            } else {
+                var message2 = "Je suis " + classe.eleves[i].prenom + " " + classe.eleves[i].nom +
+                " et je suis absent.";
+                alert(message2);
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p>Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
