@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var maFonction = function () {
+            var monTableau = [];
+            var sum = 0;
+            var result = 0;
+            var saisie = prompt("Veuillez saisir un nombre :");
+            while (saisie = Number(saisie)) {
+                monTableau.push(saisie);
+                saisie = prompt("Veuillez saisir un nombre :");
+            }
+            for (var i = 0; i < monTableau.length; i++) {
+                sum += monTableau[i];
+                result = sum / 2
+            }
+            console.log(result);
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Les marmottes et le chocolat</h1>
+    <p onclick="maFonction()">Les tablettes sont faites par des machines artisanales</p>
+    <p>Puis la marmotte met le chocolat dans le papier alu</p>
+
+</body>
+
+</html>
