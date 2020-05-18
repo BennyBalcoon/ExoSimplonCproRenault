@@ -13,19 +13,18 @@
                 var mots = [8, "je me lève", 13, "je déjeune", 23, "je vais me coucher"];
 
                 function affichePhrase() {
-                    for (var index = 0; index < mots.length - 1; index++) {
-                        if (index % 2 === 0) {
-                            var phrase = "Il est " + mots[index] + " h, " + mots[index+1] + ".";
-                        }
-                        console.log(index);
-                        console.log(phrase);
+                    var phrase = "";
+                    var prefixe = "Il est ";
+
+                    for(var i = 0; i < mots.length; i = i+2) { 
+                        phrase += prefixe + mots[i] + "h, " + mots[i+1] + ". ";
                     }
+                    console.log(phrase);
                 }
                 return affichePhrase;
-
         }
         var maFonction = parcourirTableau();
-        // maFonction();
+        maFonction();
         
         // function creerFonction() {
         //     var nom = "Mozilla";
