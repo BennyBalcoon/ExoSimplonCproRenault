@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var fonctionOnLoad = function () {
+            console.log(document.getElementById('title'));
+        }
+
+        var fonctionOnClick = function () {
+            var content = document.getElementById('para');
+            content.innerHTML = "Ce texte est écrit dans cette balise par mon script";
+
+        }
+    </script>
+
+</head>
+
+<body onload="fonctionOnLoad()">
+
+    <h1 id="title" onclick="fonctionOnClick()">Hamlet</h1>
+    <p id="para">Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
