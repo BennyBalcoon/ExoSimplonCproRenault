@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+     
+        var concorde = {
+            modele: "Concordia",
+            capacite: 150,
+            prix: 1000000000,
+            passagers: [],
+            reservoir: 100,
+            couleur: ["blanc"]
+        }
+
+        var airbus = Object.create(concorde);
+        airbus.compagnie = "Air France";
+
+        var nouvelAirbus = Object.create(concorde);
+        nouvelAirbus.compagnie = "british airways";
+
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p>Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
