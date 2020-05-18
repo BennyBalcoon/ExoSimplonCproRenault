@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+    
+    var maFonction = function() {
+            var choix = confirm("Voulez-vous continuer ?");
+            if (choix === true) {
+                alert("Vous avez cliqué sur OK");
+            } else {
+                alert("Vous avez choisi d'annuler");
+            }
+        }
+
+        var maDeuxiemeFonction = function() {
+            var choix = confirm("Voulez-vous continuer?");
+            if (choix === true) {
+                alert("Vous avez cliqué sur OK !");
+            } else {
+                alert("Vous avez choisi d'annuler");
+            }
+        }
+
+        var maTroisiemeFonction = function() {
+            var choix = confirm("Voulez-vous continuer?");
+            if (choix === true) {
+                alert("Vous avez cliqué sur OK !");
+            } else {
+                alert("Vous avez choisi d'annuler");
+            }           
+        }
+
+    </script>
+</head>
+<body onload="maFonction()">
+    <h1 onmouseover="maTroisiemeFonction()">Titre Principal</h1>
+    <p onclick="maDeuxiemeFonction()">Un premier paragraphe</p>
+    <p>Un deuxieme paragraphe</p>
+</body>
+</html>

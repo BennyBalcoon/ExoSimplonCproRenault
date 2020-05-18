@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+    
+        var maFonction = function pop() {
+            // alert("ceci est un choix");
+            confirm("Ceci est un choix");
+        }
+
+        var maDeuxiemeFonction = function() {
+            var choix = confirm("Ceci est un choix");
+            alert(choix);
+        }
+
+        var maTroisiemeFonction = function() {
+            var choix = confirm("Voulez-vous continuer ?");
+            if (choix === true) {
+                alert("Vous avez cliqué sur OK");
+            }
+        }
+    
+    </script>
+</head>
+<body onload="maTroisiemeFonction()">
+    <p onclick="maFonction()">Un premier paragraphe de texte</p>
+    <p onclick="maDeuxiemeFonction()">Un second paragraphe de texte</p>
+</body>
+</html>
