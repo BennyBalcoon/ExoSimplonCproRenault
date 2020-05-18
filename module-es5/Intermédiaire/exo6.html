@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var maFonction = function () {
+            var monTableau = [];
+            for (var i = 0; i < 4; i++) {
+                var saisie = prompt("Veuillez saisir du texte");
+                while ("" === saisie || null === saisie) {
+                    saisie = prompt("Veuillez saisir du texte");
+                }
+                monTableau.push(saisie);
+                // alert(monTableau[i]);
+            }
+            for (var i = 0; i < 4; i++) {
+                alert(monTableau[i]);
+            }
+        }
+    </script>
+
+</head>
+
+<body onload="maFonction()">
+
+    <h1>Les marmottes et le chocolat</h1>
+    <p>Les tablettes sont faites par des machines artisanales</p>
+    <p>Puis la marmotte met le chocolat dans le papier alu</p>
+
+</body>
+
+</html>
