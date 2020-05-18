@@ -5,6 +5,24 @@
   <title>RxJS</title>
 </head>
 <body>
-  <script src="bundle.js"></script>
+  <h1>Création d'adresse</h1>
+  <form id="formAddress">
+      <p>Street : <input type="text" name="street" /></p>
+      <p>City : <input type="text" name="city" /></p>
+      <p>ZipCode : <input type="number" name="zipcode" /></p>
+      <p>Country : <input type="text" name="country" /></p>
+      
+      <p><input type="submit" value="Enregistrer" /></p>
+  </form>
+
+  <h1>Création de personne</h1>
+  <form id="formPerson">
+      <p>Firstname : <input type="text" name="firstname" /></p>
+      <p>Lastname : <input type="text" name="lastname" /></p>
+      <p>Birth Date : <input type="date" name="birthdate" /></p>
+      <p>Address : <input type="text" name="address" id="addressInput"></p>
+      <p><input type="submit" value="Enregistrer" /></p>
+  </form>
+  <script src="./exercice-02/build/bundle.js"></script>
 </body>
 </html>
