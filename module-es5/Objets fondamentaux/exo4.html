@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+ 
+    <script>
+     
+        var date = new Date();
+        date = Date.now();
+        console.log(date);
+
+        var dateFin = new Date("October 03, 2019, 17:00:00 GMT+0200");
+
+        var tempsRestant = dateFin - date;
+        
+        var secondes = Math.floor(tempsRestant / 1000) % 60;
+        var minutes = Math.floor(tempsRestant / 60000) % 60;
+        alert("Il reste " + minutes + " minutes et " + secondes + " secondes avant la fin du cours.");
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p onclick="maFonction()">Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>

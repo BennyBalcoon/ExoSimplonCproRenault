@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var maFonction = function () {
+            var saisie = prompt("Veuillez saisir un message");
+            while (!isNaN(saisie)) {
+                saisie = prompt("Veuillez saisir un message");
+            }
+            alert(saisie.length);
+            
+            var msg = saisie.substr(1, saisie.length-2);
+            alert(msg);
+
+            var words = saisie.split(' ');
+            for (var i=0; i < words.length; i++) {
+                alert(words[i]);
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p onclick="maFonction()">Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>

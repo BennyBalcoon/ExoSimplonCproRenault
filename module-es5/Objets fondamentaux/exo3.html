@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var maFonction = function () {
+            var tableau = ["Il", "était", "une", "fois", "toi", "et", "moi", "ahaaaaaa", "aaaaaah", "ahaaaaaaaa"];
+            alert(tableau.join(" "));
+            tableau.push("au", "bal", "des", "Laze");
+
+                var nouveauTableau = [];
+            for (var i = 1; i <= 3; i++) {
+                var motsRetires = tableau.shift();
+                console.log(motsRetires);
+                nouveauTableau.push(motsRetires);
+                console.log(nouveauTableau);
+            }
+                
+                
+                
+            var motsMaj = nouveauTableau.map(function(mots) {
+                return mots.toUpperCase();
+            })
+            console.log(motsMaj);
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p onclick="maFonction()">Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
