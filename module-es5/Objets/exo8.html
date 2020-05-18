@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+     
+        var maison = {
+            adresse: "122 avenue du Général Leclerc",
+            chambre: null
+        }
+
+        var chambre = {
+            lit: "matelas",
+            quelEstMonAdresse() {
+                alert(this.nouvellePropriete.adresse);
+            }
+        }
+
+        maison.chambre = chambre;
+        alert(maison.chambre.lit);
+        chambre.nouvellePropriete = maison;
+        chambre.quelEstMonAdresse();
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Hamlet</h1>
+    <p>Il y a quelque chose de pourri au royaume du Danemark</p>
+    <p>Et Hamlet va nettoyer tout ça!</p>
+
+</body>
+
+</html>
