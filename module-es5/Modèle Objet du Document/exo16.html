@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <style>
+        .masque {
+            position: absolute;
+            overflow: hidden;
+            width: 85px;
+            height: 85px;
+            border: 1px solid black;
+        }
+
+        .sprite {
+            position: absolute;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            window.onkeydown = function (event) {
+                var code = event.keyCode;
+                switch (code) {
+                    case 37:
+                        // Instructions.
+                        var marginLeft = document.getElementById('container').style.marginLeft;
+                        if (!marginLeft) {
+                            document.getElementById('container').style.marginLeft = "2px"
+                        } else {
+                            document.getElementById('container').style.marginLeft =
+                                `${parseFloat(document.getElementById('container').style.marginLeft) - 2}px`;
+                        }
+                        break;
+                    case 38:
+                        // Instructions.
+                        var marginTop = document.getElementById('container').style.marginTop;
+                        if (!marginTop) {
+                            document.getElementById('container').style.marginTop = "2px"
+                        } else {
+                            document.getElementById('container').style.marginTop =
+                                `${parseFloat(document.getElementById('container').style.marginTop) - 2}px`;
+                        }
+                        break;
+                    case 39:
+                        // Instructions.
+                        var marginLeft = document.getElementById('container').style.marginLeft;
+                        if (!marginLeft) {
+                            document.getElementById('container').style.marginLeft = "2px"
+                        } else {
+                            document.getElementById('container').style.marginLeft =
+                                `${parseFloat(document.getElementById('container').style.marginLeft) + 2}px`;
+                        }
+                        break;
+                    case 40:
+                        // Instructions.
+                        var marginTop = document.getElementById('container').style.marginTop;
+                        if (!marginTop) {
+                            document.getElementById('container').style.marginTop = "2px"
+                        } else {
+                            document.getElementById('container').style.marginTop =
+                                `${parseFloat(document.getElementById('container').style.marginTop) + 2}px`;
+                        }
+                        break;
+                    case 13:
+                        console.log("boum!");
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <h1>Play !</h1>
+    <div>
+        <div id="container" class="masque">
+            <img src="https://freepikpsd.com/wp-content/uploads/2019/11/galaga-sprites-transparent-10-Transparent-Images.png"
+                id="contenu" class="sprite" />
+        </div>
+    </div>
+</body>
+
+</html>
