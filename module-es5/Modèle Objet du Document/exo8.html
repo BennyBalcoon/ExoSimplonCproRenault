@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        var premierSpan = function () {
+            var span1 = document.getElementById('span1');
+            span1.style.color = 'lime';
+            span1.style.fontWeight = "100";
+            span1.style.fontSize = '24px';
+        }
+
+        function secondSpan() {
+            var span2 = document.getElementById('span2');
+            span2.style.color = 'blue';
+            span2.style.fontWeight = "400";
+            span2.style.fontSize = '44px';
+        }
+
+        function troisiemeSpan() {
+            var span3 = document.getElementById('span3');
+            span3.style.color = 'red';
+            span3.style.fontWeight = "600";
+            span3.style.fontSize = '64px';
+        }
+
+        function removeSpans() {
+            span1.removeAttribute('style');
+            span2.removeAttribute('style');
+            span3.removeAttribute('style');
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1 onmouseover="removeSpans()">Titre principal</h1>
+    <ul>
+        <li onclick="premierSpan()">Premier point</li>
+        <li onclick="secondSpan()">Deuxième point</li>
+        <li onclick="troisiemeSpan()">Troisième point</li>
+    </ul>
+    <div>
+        <div>
+            <h2>
+                <span id="span1">1</span>. Titre de la première section
+            </h2>
+            <p>
+                <span>1.1</span>. Premier paragraphe de la première section et un <a href="#">lien</a>.
+            </p>
+            <p>
+            </p>
+        </div>
+        <span>1.2</span>. Deuxième paragraphe de la deuxième section et un <a href="#">lien</a>.
+        <div>
+            <h2>
+                <span id="span2">2</span>. Titre de la deuxième section
+            </h2>
+            <p>
+                <span>2.1</span>. Premier paragraphe de la deuxième section.
+            </p>
+            <p>
+            </p>
+        </div>
+        <span>2.2</span>. Deuxième paragraphe de la deuxième section.
+        <div>
+            <h2>
+                <span id="span3">3</span>. Titre de la troisième section
+            </h2>
+            <p>
+                <span>3.1</span>. Premier paragraphe de la troisième section.
+            </p>
+            <p>
+            </p>
+        </div>
+        <span>3.2</span>. Deuxième paragraphe de la troisième section.
+    </div>
+
+</body>
+
+</html>
