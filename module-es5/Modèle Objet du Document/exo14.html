@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #title {
+            position: absolute;
+        }
+    </style>
+
+    <script>
+        var myVar;
+
+        function myFunction() {
+            myVar = setInterval(topVariation, 200);
+        }
+
+        function topVariation() {
+            var topPosition = document.getElementById('title').style.top;
+            if (!topPosition) {
+                document.getElementById('title').style.top = '0px';
+            } else {
+                document.getElementById('title').style.top =
+                    `${parseFloat(document.getElementById('title').style.top) + 2}px`;
+            }
+        }
+    </script>
+</head>
+
+<body onload="myFunction()">
+    <h1 id="title">Titre principal</h1>
+    <ul>
+        <li>Premier point</li>
+        <li>Deuxième point</li>
+        <li>Troisième point</li>
+    </ul>
+    <div>
+        <div>
+            <h2>
+                <span>1</span>. Titre de la première section
+            </h2>
+            <p>
+                <span>1.1</span>. Premier paragraphe de la première section et un <a href="#">lien</a>.
+            </p>
+            <p>
+            </p>
+        </div>
+        <span>1.2</span>. Deuxième paragraphe de la deuxième section et un <a href="#">lien</a>.
+        <div>
+            <h2>
+                <span>2</span>. Titre de la deuxième section
+            </h2>
+            <p>
+                <span>2.1</span>. Premier paragraphe de la deuxième section.
+            </p>
+            <p>
+            </p>
+        </div>
+        <span>2.2</span>. Deuxième paragraphe de la deuxième section.
+        <div>
+            <h2>
+                <span>3</span>. Titre de la troisième section
+            </h2>
+            <p>
+                <span>3.1</span>. Premier paragraphe de la troisième section.
+            </p>
+            <p>
+            </p>
+        </div>
+        <span>3.2</span>. Deuxième paragraphe de la troisième section.
+    </div>
+
+</body>
+
+</html>

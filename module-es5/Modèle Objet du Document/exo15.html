@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1>Titre principal</h1>
+    <ul>
+        <li id="list">Premier point</li>
+        <li>Deuxième point</li>
+        <li>Troisième point</li>
+    </ul>
+    <div>
+        <div>
+            <h2>
+                <span>1</span>. Titre de la première section
+            </h2>
+            <p>
+                <span>1.1</span>. Premier paragraphe de la première section et un <a href="#">lien</a>.
+            </p>
+            <p>
+                <span id="span">1.2</span>.
+                Deuxième paragraphe de la première section et un <a href="#">lien</a>.
+            </p>
+        </div>
+        <div>
+            <h2>
+                <span>2</span>. Titre de la deuxième section
+            </h2>
+            <p>
+                <span>2.1</span>. Premier paragraphe de la deuxième section.
+            </p>
+            <p>
+                <span>2.2</span>. Deuxième paragraphe de la deuxième section.
+            </p>
+        </div>
+        <div>
+            <h2>
+                <span>3</span>. Titre de la troisième section
+            </h2>
+            <p>
+                <span>3.1</span>. Premier paragraphe de la troisième section.
+            </p>
+            <p>
+                <span>3.2</span>. Deuxième paragraphe de la troisième section.
+            </p>
+        </div>
+        <form method="http://www.google.com" action="GET">
+            <input id="q" name="q" type="text" value="" />
+        </form>
+    </div>
+</body>
+
+<script>
+    window.onload = alert('Ce message est affiché au chargement du document !');
+
+    var list = document.getElementById("list");
+    list.onmouseover = alertMouseOver;
+
+    function alertMouseOver() {
+        return alert('Ce message est affiché quand on survole ce point.');
+    }
+
+    var span = document.getElementById("span");
+    span.onmouseout = alertMouseOut;
+
+    function alertMouseOut() {
+        return alert('Ce message est affiché quand on ne survole plus cet élément.')
+    }
+
+    var input = document.getElementById("q");
+    input.onfocus = alertMouseOver;
+</script>
+
+</html>
