@@ -40,9 +40,14 @@ loadingDoc.subscribe(() => {
     })
 
 })
-fromEvent(addressInput, "keyup").subscribe(() => {
+fromEvent(addressInput, "keyup").subscribe((event) => {
+    let city = event.target.value;
+    if (city && typeof city === "string") {
+        city = city.charAt(0).toUpperCase() + city.slice(1);
+    }
+    console.log(city);
     ajax({
-        url: "http://localhost:8082/addresses",
+        url: `http://localhost:8082/addresses/searchByCity/${city}`,
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -53,7 +58,7 @@ fromEvent(addressInput, "keyup").subscribe(() => {
     }).subscribe((data) => {
         if (data.status === 200) {
             let addresses = data.response;
-            // console.log(addresses);
+            console.log(addresses);
             // addresses.map(x => console.log(x.id));
             for (let i = 0; i < addresses.length; i++) {
                 addressesList.innerHTML = addressesList.innerHTML + "<li>" + addresses[i]['street'] + " " + addresses[i]['city'] + " " + addresses[i]['zipCode'] + " " + addresses[i]['country'] + "</li><br>"
