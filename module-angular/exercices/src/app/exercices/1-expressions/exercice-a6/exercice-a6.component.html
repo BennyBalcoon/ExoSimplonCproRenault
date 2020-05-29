@@ -1,0 +1,41 @@
+<form>
+  <select [(ngModel)]="selectedColor" name="selectedColor" aria-placeholder="make a choice">
+    <option aria-placeholder="choose">--Choose--</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="blue">Bleu</option>
+    <option value="red&green">Rouge et Vert</option>
+    <option value="red&blue">Rouge et Bleu</option>
+    <option value="blue&green">Bleu et Vert</option>
+    <option value="rgb">Rouge Vert Bleu</option>
+  </select>
+</form>
+
+{{ selectedColor }}
+
+<div *ngIf="selectedColor == 'red'">
+  <div id="red"></div>
+</div>
+<div *ngIf="selectedColor == 'green'">
+  <div id="green"></div>
+</div>
+<div *ngIf="selectedColor == 'blue'">
+  <div id="blue"></div>
+</div>
+<div *ngIf="selectedColor == 'red&green'">
+  <div id="red"></div>
+  <div id="green"></div>
+</div>
+<div *ngIf="selectedColor == 'red&blue'">
+  <div id="red"></div>
+  <div id="blue"></div>
+</div>
+<div *ngIf="selectedColor == 'blue&green'">
+  <div id="blue"></div>
+  <div id="green"></div>
+</div>
+<div *ngIf="selectedColor == 'rgb'">
+  <div id="red"></div>
+  <div id="green"></div>
+  <div id="blue"></div>
+</div>
