@@ -1,0 +1,20 @@
+#red {
+  height: 50px;
+  width: 50px;
+  border-radius: 30px;
+  background-color: red;
+}
+
+#blue {
+  height: 50px;
+  width: 50px;
+  border-radius: 30px;
+  background-color: blue;
+}
+
+#green {
+  height: 50px;
+  width: 50px;
+  border-radius: 30px;
+  background-color: green;
+}
