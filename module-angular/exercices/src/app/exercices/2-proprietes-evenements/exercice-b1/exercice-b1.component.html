@@ -1,0 +1,8 @@
+<img [src]="chien" alt="chien" />
+<!-- <img [src]="chats[0]" alt="chat" />
+<img [src]="chats[1]" alt="chat" />
+<img [src]="chats[2]" alt="chat" /> -->
+
+<div *ngFor="let chat of chats">
+  <img [src]="chat" alt="chat" />
+</div>
