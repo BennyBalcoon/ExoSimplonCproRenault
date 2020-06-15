@@ -1,0 +1,10 @@
+<div>
+  <input type="text" (keyup)="getKeyCode($event)" />
+  <p>The key code is : {{ keyCodeInput }}</p>
+</div>
+
+<div class="myDiv" (mousemove)="follow($event.clientX, $event.clientY)"></div>
+<div>
+  <p>X : {{ coordX }}</p>
+  <p>Y : {{ coordY }}</p>
+</div>
