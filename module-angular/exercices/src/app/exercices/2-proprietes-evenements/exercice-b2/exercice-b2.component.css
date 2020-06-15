@@ -1,0 +1,19 @@
+.even {
+  color: green;
+}
+
+.odd {
+  color: pink;
+}
+
+.positive {
+  border: 2px solid orange;
+}
+
+.negative {
+  border: 2px solid blue;
+}
+
+.zero {
+  border: 2px solid gray;
+}

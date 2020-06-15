@@ -1,0 +1,12 @@
+<div
+  [ngClass]="{
+    even: nombre % 2 == 0,
+    odd: nombre % 2 !== 0,
+    positive: nombre > 0,
+    negative: nombre < 0,
+    zero: nombre == 0
+  }"
+>
+  le nombre est {{ nombre }}
+</div>
+<input type="range" min="-100" max="100" [(ngModel)]="nombre" />

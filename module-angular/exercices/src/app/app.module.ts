@@ -14,6 +14,7 @@ import { ExerciceA6Component } from './exercices/1-expressions/exercice-a6/exerc
 import { ExerciceA7Component } from './exercices/1-expressions/exercice-a7/exercice-a7.component';
 import { ExerciceA8Component } from './exercices/1-expressions/exercice-a8/exercice-a8.component';
 import { ExerciceB1Component } from './exercices/2-proprietes-evenements/exercice-b1/exercice-b1.component';
+import { ExerciceB2Component } from './exercices/2-proprietes-evenements/exercice-b2/exercice-b2.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ExerciceB1Component } from './exercices/2-proprietes-evenements/exercic
     ExerciceA7Component,
     ExerciceA8Component,
     ExerciceB1Component,
+    ExerciceB2Component,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
