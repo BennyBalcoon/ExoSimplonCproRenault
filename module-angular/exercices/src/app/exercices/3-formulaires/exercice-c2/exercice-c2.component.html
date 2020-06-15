@@ -1,0 +1,32 @@
+<form #myForm="ngForm" (ngSubmit)="register(myForm)">
+  <label for="nom">Nom : </label>
+  <input #nom="ngModel" type="text" minlength="2" [(ngModel)]="utilisateur.nom" name="nom" />
+  <div *ngIf="nom.invalid">
+    <p>Ce nom n'est pas valide!</p>
+  </div>
+  <label for="prenom">Prénom : </label>
+  <input #prenom="ngModel" type="text" minlength="2" [(ngModel)]="utilisateur.prenom" name="prenom" />
+  <p *ngIf="prenom.invalid">Ce prénom n'est pas valide!</p>
+  <label for="email">Email : </label>
+  <input #email="ngModel" type="text" name="email" [(ngModel)]="utilisateur.email" required />
+  <p *ngIf="email.invalid">Cet e-mail n'est pas valide!</p>
+  <label for="age">Age : </label>
+  <input #age type="number" name="age" [(ngModel)]="utilisateur.age" />
+  <button type="submit">GO!</button>
+</form>
+
+<div>
+  <p>Nom: {{ utilisateur.nom }}</p>
+  <p>Prénom: {{ utilisateur.prenom }}</p>
+  <p>Email: {{ utilisateur.email }}</p>
+  <p>Age: {{ utilisateur.age }}</p>
+</div>
+
+<h2>Liste Utilisateur</h2>
+<div *ngFor="let utilisateur of utilisateurs; let i = index">
+  <p>Utilisateur N°{{ i + 1 }} Infos:</p>
+  <p>Nom : {{ utilisateur.nom }}</p>
+  <p>Prénom : {{ utilisateur.prenom }}</p>
+  <p>Email :{{ utilisateur.email }}</p>
+  <p>Age : {{ utilisateur.age }}</p>
+</div>
